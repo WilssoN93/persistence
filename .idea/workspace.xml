@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="79da7abf-aaca-4bb2-85a4-d44cf10c2d39" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../HardWar/Hardwar/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HardWar/Hardwar/builder/builder.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HardWar/Hardwar/builder/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Scrapers/IntelCOM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/Hardwar.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Entitys/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Runner/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Runner/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Scraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Scraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Scrapers/InetSE.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Scrapers/InetSE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Scrapers/KomplettSE.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Scrapers/KomplettSE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Utils/WebExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Utils/WebExport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Entitys/Product.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Runner/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Runner/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Scraper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Scraper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Scrapers/InetSE.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Scrapers/InetSE.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Scrapers/KomplettSE.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Scrapers/KomplettSE.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Utils/Utils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Utils/WebExport.class" beforeDir="false" afterPath="$PROJECT_DIR$/../HardWar/Hardwar/target/classes/Hardwar/Utils/WebExport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Hardwar/Persistence/Repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Hardwar/Persistence/Repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Hardwar/Persistence/Resource/ProductResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Hardwar/Persistence/Resource/ProductResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Hardwar/Persistence/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Hardwar/Persistence/Service/ProductService.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../HardWar/Hardwar" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="11" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1RcJaxuT01TlA6OWMmuZ1yW1kvE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../builder/pom.xml" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15332031" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Runner">
+    <configuration name="Builder" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Builder.Builder" />
+      <module name="builder" />
+      <option name="PROGRAM_PARAMETERS" value="http://localhost:8080 4000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Persistence" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.Hardwar.Persistence.PersistenceApplication" />
+      <module name="Persistence" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Runner" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Hardwar.Runner.Runner" />
+      <module name="Hardwar" />
+      <option name="PROGRAM_PARAMETERS" value="C:\Users\Daniels\HardWar\chromedriver.exe parse inet.se http://localhost:8080 grafikkort" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Builder" />
+      <item itemvalue="Application.Persistence" />
+      <item itemvalue="Application.Runner" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79da7abf-aaca-4bb2-85a4-d44cf10c2d39" name="Default Changelist" comment="" />
+      <created>1569960517641</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569960517641</updated>
+      <workItem from="1569960519948" duration="4895000" />
+      <workItem from="1570001024078" duration="3923000" />
+      <workItem from="1570119752130" duration="19255000" />
+      <workItem from="1570167858624" duration="950000" />
+      <workItem from="1570204702425" duration="47750000" />
+      <workItem from="1570474955188" duration="29284000" />
+      <workItem from="1570603632967" duration="8061000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Client.java</url>
+          <line>132</line>
+          <properties class="Hardwar.Client" method="getAll">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Client.java</url>
+          <line>39</line>
+          <properties class="Hardwar.Client" method="getAllByDomainNameAndType">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/../HardWar/Hardwar/src/main/java/Hardwar/Client.java</url>
+          <line>308</line>
+          <properties class="Hardwar.Client" method="updateCPUs">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
