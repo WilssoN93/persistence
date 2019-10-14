@@ -25,25 +25,25 @@ public class GraphicsCardService {
         List<GraphicsCard> allGraphicsCards = repository.findAll();
         for (int i = 0; i < graphicsCardsList.size(); i++) {
             GraphicsCard targetGpu = graphicsCardsList.get(i);
-            for (GraphicsCard graphicsCard : allGraphicsCards) {
-                if (targetGpu.getUrl().equals(graphicsCard.getUrl())){
-                    targetGpu.setId(graphicsCard.getId());
-                }
-                if (targetGpu.getArticleNumber().equals(graphicsCard.getArticleNumber())) {
-                    if (targetGpu.getCoreClock() == null && graphicsCard.getCoreClock() != null) {
-                        targetGpu.setCoreClock(graphicsCard.getCoreClock());
-                        System.out.println(targetGpu.getName()+ " CoreClock");
+                for (GraphicsCard graphicsCard : allGraphicsCards) {
+                    if (targetGpu.getUrl().equals(graphicsCard.getUrl())) {
+                        targetGpu.setId(graphicsCard.getId());
                     }
-                    if (targetGpu.getBoostClock() == null && graphicsCard.getBoostClock() != null) {
-                        System.out.println(targetGpu.getName()+ " BoostClock");
-                        targetGpu.setBoostClock(graphicsCard.getBoostClock());
-                    }
-                    if (targetGpu.getCudaCores() == null && graphicsCard.getCudaCores() != null) {
-                        targetGpu.setCudaCores(graphicsCard.getCudaCores());
-                        System.out.println(targetGpu.getName() + "cuda cores" );
-                    }
-                }
+                    if (targetGpu.getArticleNumber().equals(graphicsCard.getArticleNumber())) {
+                        if (targetGpu.getCoreClock() == null && graphicsCard.getCoreClock() != null) {
+                            targetGpu.setCoreClock(graphicsCard.getCoreClock());
+                            System.out.println(targetGpu.getName() + " CoreClock");
+                        }
+                        if (targetGpu.getBoostClock() == null && graphicsCard.getBoostClock() != null) {
+                            System.out.println(targetGpu.getName() + " BoostClock");
+                            targetGpu.setBoostClock(graphicsCard.getBoostClock());
+                        }
+                        if (targetGpu.getCudaCores() == null && graphicsCard.getCudaCores() != null) {
+                            targetGpu.setCudaCores(graphicsCard.getCudaCores());
+                            System.out.println(targetGpu.getName() + "cuda cores");
 
+                    }
+                }
             }
             repository.save(targetGpu);
         }

@@ -3,66 +3,79 @@ package com.Hardwar.Persistence.Entitys;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "motherboard")
-public class MotherBoard extends ComputerComponent {
+@Table(name = "storage")
+public class Storage extends ComputerComponent {
 
     Long id;
     String name;
     String price;
-    String domainName;
     String articleNumber;
+    String domainName;
     String url;
     String imgUrl;
-    String socket;
-    String formFactor;
-    String supportedRam;
-    String speeds;
-
+    String size;
+    String type;
+    String readSpeed;
+    String writeSpeed;
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
-    @Column(name = "speeds")
-    public String getSpeeds() {
-        return speeds;
-    }
+
     @Column(name = "`name`")
     public String getName() {
         return name;
     }
-    @Column(name = "domainname")
-    public String getDomainName() {
-        return domainName;
-    }
+
     @Column(name = "price")
     public String getPrice() {
         return price;
     }
+
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
     }
+
     @Column(name = "url")
     public String getUrl() {
         return url;
     }
+
     @Column(name = "imgurl")
     public String getImgUrl() {
         return imgUrl;
     }
-    @Column(name = "socket")
-    public String getSocket() {
-        return socket;
+
+    @Column(name = "type")
+    public String getType() {
+        return type;
     }
-    @Column(name = "formfactor")
-    public String getFormFactor() {
-        return formFactor;
+
+    @Column(name = "size")
+    public String getSize() {
+        return size;
     }
-    @Column(name = "supportedram")
-    public String getSupportedRam() {
-        return supportedRam;
+
+    @Column(name = "writespeed")
+    public String getWriteSpeed() {
+        return writeSpeed;
+    }
+
+    @Column(name = "readspeed")
+    public String getReadSpeed() {
+        return readSpeed;
+    }
+
+    @Column(name = "domainname")
+    public String getDomainName() {
+        return domainName;
+    }
+
+    public void setDomainName(String domainName) {
+        this.domainName = domainName;
     }
 
     public void setId(Long id) {
@@ -77,10 +90,6 @@ public class MotherBoard extends ComputerComponent {
         this.price = price;
     }
 
-    public void setDomainName(String domainName) {
-        this.domainName = domainName;
-    }
-
     public void setArticleNumber(String articleNumber) {
         this.articleNumber = articleNumber;
     }
@@ -93,22 +102,19 @@ public class MotherBoard extends ComputerComponent {
         this.imgUrl = imgUrl;
     }
 
-    public void setSocket(String socket) {
-        this.socket = socket;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public void setSpeeds(String speeds) {
-        this.speeds = speeds;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setFormFactor(String formFactor) {
-        this.formFactor = formFactor;
+    public void setReadSpeed(String readSpeed) {
+        this.readSpeed = readSpeed;
     }
 
-    public void setSupportedRam(String supportedRam) {
-        this.supportedRam = supportedRam;
+    public void setWriteSpeed(String writeSpeed) {
+        this.writeSpeed = writeSpeed;
     }
-
-
-
 }
