@@ -17,6 +17,10 @@ public class GraphicsCardService {
         return repository.findAllByDomainName(domainName);
     }
 
+    public List<GraphicsCard> getAllByPriceAmount(String amount){
+       return repository.findAllByPriceIsLessThanEqual(Integer.parseInt(amount));
+    }
+
     public List<GraphicsCard> getAllGraphicsCards() {
         return repository.findAll();
     }
@@ -30,15 +34,15 @@ public class GraphicsCardService {
                         targetGpu.setId(graphicsCard.getId());
                     }
                     if (targetGpu.getArticleNumber().equals(graphicsCard.getArticleNumber())) {
-                        if (targetGpu.getCoreClock() == null && graphicsCard.getCoreClock() != null) {
+                        if (targetGpu.getCoreClock() == 0 && graphicsCard.getCoreClock() != 0) {
                             targetGpu.setCoreClock(graphicsCard.getCoreClock());
                             System.out.println(targetGpu.getName() + " CoreClock");
                         }
-                        if (targetGpu.getBoostClock() == null && graphicsCard.getBoostClock() != null) {
+                        if (targetGpu.getBoostClock() == 0 && graphicsCard.getBoostClock() != 0) {
                             System.out.println(targetGpu.getName() + " BoostClock");
                             targetGpu.setBoostClock(graphicsCard.getBoostClock());
                         }
-                        if (targetGpu.getCudaCores() == null && graphicsCard.getCudaCores() != null) {
+                        if (targetGpu.getCudaCores() == 0 && graphicsCard.getCudaCores() != 0) {
                             targetGpu.setCudaCores(graphicsCard.getCudaCores());
                             System.out.println(targetGpu.getName() + "cuda cores");
 

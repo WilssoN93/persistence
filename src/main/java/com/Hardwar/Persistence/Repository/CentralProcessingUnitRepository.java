@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface CentralProcessingUnitRepository extends JpaRepository<CentralProcessingUnit,Long > {
     List<CentralProcessingUnit> findAllByDomain(String domainName);
+    List<CentralProcessingUnit> findAllByPriceIsLessThanEqual(int amount);
 }

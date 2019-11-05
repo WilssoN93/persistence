@@ -17,6 +17,10 @@ public class CentralProcessingUnitService {
         return repository.findAll();
     }
 
+    public List<CentralProcessingUnit> getAllCPUsByPrice(String amount) {
+        return repository.findAllByPriceIsLessThanEqual(Integer.parseInt(amount));
+    }
+
     public List<CentralProcessingUnit> getAllCPUsByDomainName(String domainName) {
         return repository.findAllByDomain(domainName);
     }

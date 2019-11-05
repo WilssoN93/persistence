@@ -9,11 +9,11 @@ public class RandomAccessMemory extends ComputerComponent {
     Long id;
     String name;
     String domainName;
-    String price;
+    int price;
     String articleNumber;
     String ddr;
-    String speeds;
-    String capacity;
+    int speeds;
+    int capacity;
     String url;
     String imgUrl;
 
@@ -31,7 +31,7 @@ public class RandomAccessMemory extends ComputerComponent {
         return domainName;
     }
     @Column(name = "price")
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
     @Column(name = "articlenumber")
@@ -43,11 +43,11 @@ public class RandomAccessMemory extends ComputerComponent {
         return ddr;
     }
     @Column(name = "speeds")
-    public String getSpeeds() {
+    public int getSpeeds() {
         return speeds;
     }
     @Column(name = "capacity")
-    public String getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
     @Column(name = "url")
@@ -72,7 +72,7 @@ public class RandomAccessMemory extends ComputerComponent {
         this.domainName = domainName;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -84,11 +84,11 @@ public class RandomAccessMemory extends ComputerComponent {
         this.ddr = ddr;
     }
 
-    public void setSpeeds(String speeds) {
+    public void setSpeeds(int speeds) {
         this.speeds = speeds;
     }
 
-    public void setCapacity(String capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -100,4 +100,19 @@ public class RandomAccessMemory extends ComputerComponent {
         this.imgUrl = imgUrl;
     }
 
+    @Override
+    public String toString() {
+        return "RandomAccessMemory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", domainName='" + domainName + '\'' +
+                ", price='" + price + '\'' +
+                ", articleNumber='" + articleNumber + '\'' +
+                ", ddr='" + ddr + '\'' +
+                ", speeds='" + speeds + '\'' +
+                ", capacity='" + capacity + '\'' +
+                ", url='" + url + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                '}';
+    }
 }

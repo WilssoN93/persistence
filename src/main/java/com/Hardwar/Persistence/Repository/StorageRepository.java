@@ -8,4 +8,5 @@ import java.util.List;
 public interface StorageRepository extends JpaRepository<Storage,Long> {
 
     List<Storage> findAllByDomainName(String domainName);
+    List<Storage> findAllByPriceIsLessThanEqual(int amount);
 }

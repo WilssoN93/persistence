@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PowerSupplyUnitRepository extends JpaRepository<PowerSupplyUnit,Long> {
     List<PowerSupplyUnit> findAllByDomainName(String domainName);
+    List<PowerSupplyUnit> findAllByPriceIsLessThanEqual(int amount);
 }

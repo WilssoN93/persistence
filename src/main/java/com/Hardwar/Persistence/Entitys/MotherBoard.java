@@ -8,7 +8,7 @@ public class MotherBoard extends ComputerComponent {
 
     Long id;
     String name;
-    String price;
+    int price;
     String domainName;
     String articleNumber;
     String url;
@@ -16,53 +16,93 @@ public class MotherBoard extends ComputerComponent {
     String socket;
     String formFactor;
     String supportedRam;
-    String speeds;
+    int speeds;
+    int mdot2;
+    String mdot2Size;
+    String mdot2Key;
 
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
+
     @Column(name = "speeds")
-    public String getSpeeds() {
+    public int getSpeeds() {
         return speeds;
     }
+
     @Column(name = "`name`")
     public String getName() {
         return name;
     }
+
     @Column(name = "domainname")
     public String getDomainName() {
         return domainName;
     }
+
     @Column(name = "price")
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
+
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
     }
+
     @Column(name = "url")
     public String getUrl() {
         return url;
     }
+
     @Column(name = "imgurl")
     public String getImgUrl() {
         return imgUrl;
     }
+
     @Column(name = "socket")
     public String getSocket() {
         return socket;
     }
+
     @Column(name = "formfactor")
     public String getFormFactor() {
         return formFactor;
     }
+
     @Column(name = "supportedram")
     public String getSupportedRam() {
         return supportedRam;
+    }
+
+    @Column(name = "mdot2")
+    public int getMdot2() {
+        return mdot2;
+    }
+
+    @Column(name = "mdot2size")
+    public String getMdot2Size() {
+        return mdot2Size;
+    }
+
+    @Column(name = "mdot2key")
+    public String getMdot2Key() {
+        return mdot2Key;
+    }
+
+    public void setMdot2(int mdot2) {
+        this.mdot2 = mdot2;
+    }
+
+    public void setMdot2Size(String mdot2Size) {
+        this.mdot2Size = mdot2Size;
+    }
+
+    public void setMdot2Key(String mdot2Key) {
+        this.mdot2Key = mdot2Key;
     }
 
     public void setId(Long id) {
@@ -73,7 +113,7 @@ public class MotherBoard extends ComputerComponent {
         this.name = name;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -97,7 +137,7 @@ public class MotherBoard extends ComputerComponent {
         this.socket = socket;
     }
 
-    public void setSpeeds(String speeds) {
+    public void setSpeeds(int speeds) {
         this.speeds = speeds;
     }
 
@@ -109,6 +149,20 @@ public class MotherBoard extends ComputerComponent {
         this.supportedRam = supportedRam;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "MotherBoard{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", domainName='" + domainName + '\'' +
+                ", articleNumber='" + articleNumber + '\'' +
+                ", url='" + url + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", socket='" + socket + '\'' +
+                ", formFactor='" + formFactor + '\'' +
+                ", supportedRam='" + supportedRam + '\'' +
+                ", speeds='" + speeds + '\'' +
+                '}';
+    }
 }

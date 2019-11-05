@@ -18,6 +18,9 @@ public class PowerSupplyUnitService {
     public List<PowerSupplyUnit> getAllByDomainName(String domainName) {
         return repo.findAllByDomainName(domainName);
     }
+    public List<PowerSupplyUnit> getAllByPrice(int amount){
+        return repo.findAllByPriceIsLessThanEqual(amount);
+    }
 
     public List<PowerSupplyUnit> saveAll(List<PowerSupplyUnit> powerSupplyUnits) {
         List<PowerSupplyUnit> allPSUs = getAllPSUs();

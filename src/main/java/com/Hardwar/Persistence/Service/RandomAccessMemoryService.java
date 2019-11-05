@@ -21,6 +21,10 @@ public class RandomAccessMemoryService {
         return repository.findAllByDomainName(domainName);
     }
 
+    public List<RandomAccessMemory> getAllByPrice(int amount){
+        return repository.findAllByPriceIsLessThanEqual(amount);
+    }
+
     public List<RandomAccessMemory> saveAllRAM(List<RandomAccessMemory> listOfRAM){
         List<RandomAccessMemory> allRAM = getAllRAM();
 
@@ -32,13 +36,13 @@ public class RandomAccessMemoryService {
                         targetRAM.setId(persistedRAM.getId());
                     }
                     if (targetRAM.getArticleNumber().equals(persistedRAM.getArticleNumber())) {
-                        if (targetRAM.getCapacity() == null && persistedRAM.getCapacity() != null) {
+                        if (targetRAM.getCapacity() == 0 && persistedRAM.getCapacity() != 0) {
                             targetRAM.setCapacity(persistedRAM.getCapacity());
                         }
                         if (targetRAM.getDdr() == null && persistedRAM.getDdr() != null) {
                             targetRAM.setDdr(persistedRAM.getDdr());
                         }
-                        if (targetRAM.getSpeeds() == null && persistedRAM.getSpeeds() != null) {
+                        if (targetRAM.getSpeeds() == 0 && persistedRAM.getSpeeds() != 0) {
                             targetRAM.setSpeeds(persistedRAM.getSpeeds());
                         }
 

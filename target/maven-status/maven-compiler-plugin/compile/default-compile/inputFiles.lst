@@ -1,9 +1,11 @@
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Repository\PowerSupplyUnitRepository.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Repository\ChassiRepository.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Resource\StorageResource.java
+C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\Computer.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\PowerSupplyUnit.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Repository\CentralProcessingUnitRepository.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\Chassi.java
+C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Builder.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\PersistenceApplication.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\ComputerComponent.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\MotherBoard.java
@@ -30,5 +32,6 @@ C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\Produ
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Resource\ChassiResource.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\GraphicsCard.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Resource\PowerSupplyUnitResource.java
+C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Resource\ComputerResource.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Entitys\CentralProcessingUnit.java
 C:\Users\Daniels\Persistence\src\main\java\com\Hardwar\Persistence\Resource\CentralProcessingUnitResource.java

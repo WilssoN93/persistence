@@ -20,6 +20,11 @@ public class StorageResource {
         return service.getAllByDomain(domainName);
     }
 
+    @GetMapping(path = "price/{amount}")
+    public List<Storage> getAllByDomain(@PathVariable("amount")int amount){
+        return service.getAllByPrice(amount);
+    }
+
     @GetMapping
     public @ResponseBody
     List<Storage> getAllStorage(){

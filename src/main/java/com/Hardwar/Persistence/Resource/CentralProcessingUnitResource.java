@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/cpu")
 public class CentralProcessingUnitResource {
 
@@ -17,6 +18,12 @@ public class CentralProcessingUnitResource {
     @GetMapping
     public @ResponseBody List<CentralProcessingUnit> getAll(){
         return service.getAllCPUs();
+    }
+
+    @GetMapping("price/{amount}")
+    public @ResponseBody
+    List<CentralProcessingUnit> getAllCPusCardsByPrice(@PathVariable("amount") String amount){
+        return service.getAllCPUsByPrice(amount);
     }
 
     @GetMapping(path = "{domainName}")

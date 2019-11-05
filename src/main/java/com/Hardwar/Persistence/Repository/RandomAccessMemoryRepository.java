@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RandomAccessMemoryRepository extends JpaRepository<RandomAccessMemory,Long> {
     List<RandomAccessMemory> findAllByDomainName(String domainName);
+    List<RandomAccessMemory> findAllByPriceIsLessThanEqual(int amount);
 }

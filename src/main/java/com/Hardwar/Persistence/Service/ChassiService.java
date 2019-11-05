@@ -19,6 +19,10 @@ public class ChassiService {
     public List<Chassi> getAllByDomain(String domainName){
         return repo.findAllByDomainName(domainName);
     }
+
+    public List<Chassi> getAllByPrice(int amount){
+        return repo.findAllByPriceIsLessThanEqual(amount);
+    }
     public List<Chassi> saveAll(List<Chassi> chassis) {
         List<Chassi> allChassis = getAllChassis();
 

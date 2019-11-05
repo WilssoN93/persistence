@@ -24,6 +24,11 @@ public class MotherBoardResource {
         return service.getAllByDomain(domainName);
     }
 
+    @GetMapping(path = "price/{amount}")
+    public List<MotherBoard> getAllByDomain(@PathVariable("amount")int amount){
+        return service.getAllMotherBoardsByPrice(amount);
+    }
+
     @PutMapping
     public List<MotherBoard> saveAllMotherBoards(@RequestBody List<MotherBoard> motherBoards){
         return service.saveAllMotherBoards(motherBoards);

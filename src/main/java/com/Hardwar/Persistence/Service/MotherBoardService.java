@@ -20,6 +20,10 @@ public class MotherBoardService {
         return repository.findAllByDomainName(domainName);
     }
 
+    public List<MotherBoard> getAllMotherBoardsByPrice(int amount){
+        return repository.findAllByPriceIsLessThanEqual(amount);
+    }
+
     public List<MotherBoard> saveAllMotherBoards(List<MotherBoard> motherBoards){
         List<MotherBoard> allMotherBoards = getAllMotherBoards();
 
@@ -37,7 +41,7 @@ public class MotherBoardService {
                         if (targetMotherBoard.getSocket() == null && persistedMotherBoard.getSocket() != null) {
                             targetMotherBoard.setSocket(persistedMotherBoard.getSocket());
                         }
-                        if (targetMotherBoard.getSpeeds() == null && persistedMotherBoard.getSpeeds() != null) {
+                        if (targetMotherBoard.getSpeeds() == 0 && persistedMotherBoard.getSpeeds() != 0) {
                             targetMotherBoard.setSpeeds(persistedMotherBoard.getSpeeds());
                         }
                         if (targetMotherBoard.getSupportedRam() == null && persistedMotherBoard.getSupportedRam() != null) {

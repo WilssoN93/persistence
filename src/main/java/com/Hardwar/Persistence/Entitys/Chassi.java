@@ -8,7 +8,7 @@ public class Chassi extends ComputerComponent {
 
     Long id;
     String name;
-    String price;
+    int price;
     String articleNumber;
     String domainName;
     String url;
@@ -24,7 +24,7 @@ public class Chassi extends ComputerComponent {
     }
 
     @Column(name = "price")
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -80,7 +80,7 @@ public class Chassi extends ComputerComponent {
         this.name = name;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -106,5 +106,21 @@ public class Chassi extends ComputerComponent {
 
     public void setMaxGpuWidth(String maxGpuWidth) {
         this.maxGpuWidth = maxGpuWidth;
+    }
+
+    @Override
+    public String toString() {
+        return "Chassi{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", articleNumber='" + articleNumber + '\'' +
+                ", domainName='" + domainName + '\'' +
+                ", url='" + url + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", formFactor='" + formFactor + '\'' +
+                ", maxHeightCpuCooler='" + maxHeightCpuCooler + '\'' +
+                ", maxGpuWidth='" + maxGpuWidth + '\'' +
+                '}';
     }
 }

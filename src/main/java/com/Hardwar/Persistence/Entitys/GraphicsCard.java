@@ -21,15 +21,15 @@ public class GraphicsCard extends ComputerComponent {
                 "id=" + id +
                 ", url='" + url + '\'' +
                 ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 ", imgUrl='" + imgUrl + '\'' +
-                ", originalPrice='" + originalPrice + '\'' +
                 ", articleNumber='" + articleNumber + '\'' +
-                ", coreClock='" + coreClock + '\'' +
-                ", boostClock='" + boostClock + '\'' +
-                ", cudaCores='" + cudaCores + '\'' +
+                ", coreClock=" + coreClock +
+                ", boostClock=" + boostClock +
+                ", cudaCores=" + cudaCores +
                 ", connection='" + connection + '\'' +
                 ", domainName='" + domainName + '\'' +
+                ", capacity=" + capacity +
                 '}';
     }
 
@@ -37,15 +37,25 @@ public class GraphicsCard extends ComputerComponent {
         this.url = url;
     }
 
-    String price;
+    int price;
     String imgUrl;
-    String originalPrice;
     String articleNumber;
-    String coreClock;
-    String boostClock;
-    String cudaCores;
+    int coreClock;
+    int boostClock;
+    int cudaCores;
+
+    @Column(name = "capacity")
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     String connection;
     String domainName;
+    int capacity;
 
     @Column(name = "domainname")
     public String getDomainName() {
@@ -75,11 +85,11 @@ public class GraphicsCard extends ComputerComponent {
     }
 
     @Column(name = "price")
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -92,15 +102,6 @@ public class GraphicsCard extends ComputerComponent {
         this.imgUrl = imgUrl;
     }
 
-    @Column(name = "originalprice")
-    public String getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(String originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
@@ -111,29 +112,29 @@ public class GraphicsCard extends ComputerComponent {
     }
 
     @Column(name = "coreclock")
-    public String getCoreClock() {
+    public int getCoreClock() {
         return coreClock;
     }
 
-    public void setCoreClock(String coreClock) {
+    public void setCoreClock(int coreClock) {
         this.coreClock = coreClock;
     }
 
     @Column(name = "boostclock")
-    public String getBoostClock() {
+    public int getBoostClock() {
         return boostClock;
     }
 
-    public void setBoostClock(String boostClock) {
+    public void setBoostClock(int boostClock) {
         this.boostClock = boostClock;
     }
 
     @Column(name = "cudacores")
-    public String getCudaCores() {
+    public int getCudaCores() {
         return cudaCores;
     }
 
-    public void setCudaCores(String cudaCores) {
+    public void setCudaCores(int cudaCores) {
         this.cudaCores = cudaCores;
     }
 

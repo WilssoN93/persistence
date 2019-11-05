@@ -10,7 +10,7 @@ public class CentralProcessingUnit extends ComputerComponent {
 
     Long id;
     String name;
-    String price;
+    int price;
     String url;
     String domain;
     String imgUrl;
@@ -19,8 +19,8 @@ public class CentralProcessingUnit extends ComputerComponent {
     String socket;
     String coreClock;
     String boostClock;
-    String threads;
-    String cores;
+    int threads;
+    int cores;
 
 
     @Id
@@ -40,7 +40,7 @@ public class CentralProcessingUnit extends ComputerComponent {
     }
 
     @Column(name = "price")
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -80,12 +80,12 @@ public class CentralProcessingUnit extends ComputerComponent {
     }
 
     @Column(name = "threads")
-    public String getThreads() {
+    public int getThreads() {
         return threads;
     }
 
     @Column(name = "cores")
-    public String getCores() {
+    public int getCores() {
         return cores;
     }
 
@@ -101,7 +101,7 @@ public class CentralProcessingUnit extends ComputerComponent {
         this.name = name;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -133,12 +133,12 @@ public class CentralProcessingUnit extends ComputerComponent {
         this.boostClock = boostClock;
     }
 
-    public void setThreads(String threads) {
+    public void setThreads(int threads) {
         this.threads = threads;
     }
 
 
-    public void setCores(String cores) {
+    public void setCores(int cores) {
         this.cores = cores;
     }
 

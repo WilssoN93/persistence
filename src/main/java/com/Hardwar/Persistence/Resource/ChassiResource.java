@@ -20,10 +20,16 @@ public class ChassiResource {
        return service.getAllChassis();
     }
 
-    @GetMapping(path = {"domainname"})
+    @GetMapping(path = "{domainname}")
     public @ResponseBody
     List<Chassi> getAllbyDomain(@PathVariable("domainname")String domainName){
         return service.getAllByDomain(domainName);
+    }
+
+    @GetMapping(path = "price/{amount}")
+    public @ResponseBody
+    List<Chassi> getAllbyDomain(@PathVariable("amount")int amount){
+        return service.getAllByPrice(amount);
     }
 
     @PutMapping

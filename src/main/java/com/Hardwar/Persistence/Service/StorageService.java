@@ -21,6 +21,10 @@ public class StorageService {
         return repo.findAllByDomainName(domainName);
     }
 
+    public List<Storage> getAllByPrice(int amount){
+        return repo.findAllByPriceIsLessThanEqual(amount);
+    }
+
     public List<Storage> saveAllStorage(List<Storage> storages) {
         List<Storage> allStorage = getAllStorage();
 
@@ -32,13 +36,13 @@ public class StorageService {
                         targetStorage.setId(persistedStorage.getId());
                     }
                     if (targetStorage.getArticleNumber().equals(persistedStorage.getArticleNumber())) {
-                        if (targetStorage.getReadSpeed() == null && persistedStorage.getReadSpeed() != null) {
+                        if (targetStorage.getReadSpeed() == 0 && persistedStorage.getReadSpeed() != 0) {
                             targetStorage.setReadSpeed(persistedStorage.getReadSpeed());
                         }
-                        if (targetStorage.getWriteSpeed() == null && persistedStorage.getWriteSpeed() != null) {
+                        if (targetStorage.getWriteSpeed() == 0 && persistedStorage.getWriteSpeed() != 0) {
                             targetStorage.setWriteSpeed(persistedStorage.getWriteSpeed());
                         }
-                        if (targetStorage.getSize() == null && persistedStorage.getSize() != null) {
+                        if (targetStorage.getSize() == 0 && persistedStorage.getSize() != 0) {
                             targetStorage.setSize(persistedStorage.getSize());
                         }
                         if (targetStorage.getType() == null && persistedStorage.getType() != null) {

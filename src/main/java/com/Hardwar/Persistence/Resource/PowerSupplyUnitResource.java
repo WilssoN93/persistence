@@ -25,6 +25,11 @@ public class PowerSupplyUnitResource {
         return service.getAllByDomainName(domainName);
     }
 
+    @GetMapping(path = "price/{amount}")
+    public List<PowerSupplyUnit> getAllByDomain(@PathVariable("amount")int amount){
+        return service.getAllByPrice(amount);
+    }
+
     @PutMapping
     public List<PowerSupplyUnit> saveAllRAM(@RequestBody List<PowerSupplyUnit> PSUs){
         return service.saveAll(PSUs);

@@ -24,6 +24,11 @@ public class RandomAccessMemoryResource {
         return service.getAllByDomain(domainName);
     }
 
+    @GetMapping(path = "price/{amount}")
+    public List<RandomAccessMemory> getAllByDomain(@PathVariable("amount")int amount){
+        return service.getAllByPrice(amount);
+    }
+
     @PutMapping
     public List<RandomAccessMemory> saveAllRAM(@RequestBody List<RandomAccessMemory> listOfRAM){
         return service.saveAllRAM(listOfRAM);

@@ -8,13 +8,14 @@ public class PowerSupplyUnit extends ComputerComponent {
 
     Long id;
     String name;
-    String price;
+    int price;
     String articleNumber;
     String domainName;
     String url;
     String imgUrl;
     String formFactor;
-    String capacity;
+    String GPUconnection;
+    int capacity;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +29,7 @@ public class PowerSupplyUnit extends ComputerComponent {
     }
 
     @Column(name = "price")
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -48,7 +49,7 @@ public class PowerSupplyUnit extends ComputerComponent {
     }
 
     @Column(name = "capacity")
-    public String getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
@@ -67,6 +68,15 @@ public class PowerSupplyUnit extends ComputerComponent {
         return domainName;
     }
 
+    @Column(name  = "gpuconnection")
+    public String getGPUconnection() {
+        return GPUconnection;
+    }
+
+    public void setGPUconnection(String GPUconnection) {
+        this.GPUconnection = GPUconnection;
+    }
+
     public void setDomainName(String domainName) {
         this.domainName = domainName;
     }
@@ -79,7 +89,7 @@ public class PowerSupplyUnit extends ComputerComponent {
         this.name = name;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -99,7 +109,7 @@ public class PowerSupplyUnit extends ComputerComponent {
         this.formFactor = formFactor;
     }
 
-    public void setCapacity(String capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -110,4 +120,19 @@ public class PowerSupplyUnit extends ComputerComponent {
     boolean modular;
 
 
+    @Override
+    public String toString() {
+        return "PowerSupplyUnit{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", articleNumber='" + articleNumber + '\'' +
+                ", domainName='" + domainName + '\'' +
+                ", url='" + url + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", formFactor='" + formFactor + '\'' +
+                ", capacity='" + capacity + '\'' +
+                ", modular=" + modular +
+                '}';
+    }
 }

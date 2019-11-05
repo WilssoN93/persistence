@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/graphicscard/")
+@RequestMapping(path = "/graphicscard")
 public class GraphicsCardResource {
 
     @Autowired
@@ -24,6 +24,12 @@ public class GraphicsCardResource {
     public @ResponseBody
     List<GraphicsCard> getAllGraphicsCardsByDomainName(@PathVariable("domainName") String domainName){
        return service.getAllGraphicsCardsByDomainName(domainName);
+    }
+
+    @GetMapping("price/{amount}")
+    public @ResponseBody
+    List<GraphicsCard> getAllGraphicsCardsByPrice(@PathVariable("amount") String amount){
+        return service.getAllByPriceAmount(amount);
     }
 
     @PutMapping

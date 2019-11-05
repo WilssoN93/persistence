@@ -8,15 +8,18 @@ public class Storage extends ComputerComponent {
 
     Long id;
     String name;
-    String price;
+    int price;
     String articleNumber;
     String domainName;
     String url;
     String imgUrl;
-    String size;
+    int size;
     String type;
-    String readSpeed;
-    String writeSpeed;
+    int readSpeed;
+    int writeSpeed;
+    String formFaktor;
+    String mdot2key;
+    String mdot2size;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +33,7 @@ public class Storage extends ComputerComponent {
     }
 
     @Column(name = "price")
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -55,23 +58,46 @@ public class Storage extends ComputerComponent {
     }
 
     @Column(name = "size")
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
     @Column(name = "writespeed")
-    public String getWriteSpeed() {
+    public int getWriteSpeed() {
         return writeSpeed;
     }
 
     @Column(name = "readspeed")
-    public String getReadSpeed() {
+    public int getReadSpeed() {
         return readSpeed;
     }
 
     @Column(name = "domainname")
     public String getDomainName() {
         return domainName;
+    }
+
+    @Column(name = "formfaktor")
+    public String getFormFaktor() {
+        return formFaktor;
+    }
+
+    @Column(name = "mdot2key")
+    public String getMdot2key() {
+        return mdot2key;
+    }
+
+    @Column(name = "mdot2size")
+    public String getMdot2size() {
+        return mdot2size;
+    }
+
+    public void setMdot2key(String mdot2key) {
+        this.mdot2key = mdot2key;
+    }
+
+    public void setMdot2size(String mdot2size) {
+        this.mdot2size = mdot2size;
     }
 
     public void setDomainName(String domainName) {
@@ -86,7 +112,7 @@ public class Storage extends ComputerComponent {
         this.name = name;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -102,7 +128,7 @@ public class Storage extends ComputerComponent {
         this.imgUrl = imgUrl;
     }
 
-    public void setSize(String size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
@@ -110,11 +136,32 @@ public class Storage extends ComputerComponent {
         this.type = type;
     }
 
-    public void setReadSpeed(String readSpeed) {
+    public void setReadSpeed(int readSpeed) {
         this.readSpeed = readSpeed;
     }
 
-    public void setWriteSpeed(String writeSpeed) {
+    public void setWriteSpeed(int writeSpeed) {
         this.writeSpeed = writeSpeed;
+    }
+
+    public void setFormFaktor(String formFaktor) {
+        this.formFaktor = formFaktor;
+    }
+
+    @Override
+    public String toString() {
+        return "Storage{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", articleNumber='" + articleNumber + '\'' +
+                ", domainName='" + domainName + '\'' +
+                ", url='" + url + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", size='" + size + '\'' +
+                ", type='" + type + '\'' +
+                ", readSpeed='" + readSpeed + '\'' +
+                ", writeSpeed='" + writeSpeed + '\'' +
+                '}';
     }
 }
