@@ -18,6 +18,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 @Service
 public class Builder {
 
@@ -33,7 +34,6 @@ public class Builder {
     List<MotherBoard> motherBoards;
     List<Chassi> chassis;
     Computer computer;
-    int budget;
 
     public Builder() {
         computer = new Computer();
@@ -41,16 +41,9 @@ public class Builder {
 
 
     public Computer getAComputer(int budget) {
-        this.budget = budget;
-
-        budget = budget - getBestPossibleRAM((int) (this.budget * 0.10));
-        budget = budget - getBestPossibleStorage((int)(this.budget * 0.10));
-        budget = budget - getBestPossibleMotherBoard((int)(this.budget * 0.15));
-        budget = budget - getBestPossibleChassi((int)(this.budget * 0.10));
-        budget = budget - getBestPossibleCPU((int)(this.budget * 0.20));
-        budget = budget - getBestPossibleGraphicsCard((int)(this.budget * 0.25));
-        computer.setTotalPrice(this.budget - budget);
-
+        getBestPossibleGraphicsCard(budget);
+        int totalPrice = computer.getGpu().getPrice() + computer.getMotherBoard().getPrice() + computer.getCpu().getPrice() + computer.getRam().getPrice() + computer.getChassi().getPrice() + computer.getPsu().getPrice() + computer.getStorage().getPrice();
+        computer.setTotalPrice(totalPrice);
         return computer;
     }
 
@@ -89,12 +82,13 @@ public class Builder {
     }
 
     private int getBestPossibleGraphicsCard(int amount) {
+        double gpuAmount = amount * 0.40;
         GPUs = (List<GraphicsCard>) getComponents("http://localhost:8080", "graphicscard", new TypeToken<List<GraphicsCard>>() {
-        }.getType(), amount);
+        }.getType(), (int) gpuAmount);
 
         GraphicsCard bestGraphicsCard = null;
         for (int i = 0; i < GPUs.size(); i++) {
-            if (bestGraphicsCard != null) {
+            if (bestGraphicsCard != null && bestGraphicsCard.getPrice() != 0) {
                 int score = 0;
                 if (GPUs.get(i).getCoreClock() > bestGraphicsCard.getCoreClock()) {
                     score += 2;
@@ -114,52 +108,87 @@ public class Builder {
         }
         if (bestGraphicsCard != null) {
             computer.setGpu(bestGraphicsCard);
+            getBestPossibleCPU(amount - bestGraphicsCard.getPrice());
+            return bestGraphicsCard.getPrice();
         }
-        return bestGraphicsCard.getPrice();
+        return 0;
     }
 
     private int getBestPossibleCPU(int amount) {
+        double cpuAmount = amount * 0.30;
         CPUs = (List<CentralProcessingUnit>) getComponents("http://localhost:8080", "cpu", new TypeToken<List<CentralProcessingUnit>>() {
-        }.getType(), amount);
+        }.getType(), (int) cpuAmount);
         CentralProcessingUnit bestCPU = null;
         for (int i = 0; i < CPUs.size(); i++) {
             int score = 0;
             if (bestCPU != null) {
-                if (computer.getMotherBoard().getSocket().equals(bestCPU.getSocket())) {
-                    if (CPUs.get(i).getCoreClock() != null && bestCPU.getCoreClock() != null) {
-                        if (Double.parseDouble(CPUs.get(i).getCoreClock()) > Double.parseDouble(bestCPU.getCoreClock())) {
-                            score += 2;
-                        }
+                if (CPUs.get(i).getCoreClock() != null && bestCPU.getCoreClock() != null) {
+                    if (Double.parseDouble(CPUs.get(i).getCoreClock()) > Double.parseDouble(bestCPU.getCoreClock())) {
+                        score += 2;
                     }
-                    if (CPUs.get(i).getBoostClock() != null && bestCPU.getBoostClock() != null) {
-                        if (Double.parseDouble(CPUs.get(i).getBoostClock()) > Double.parseDouble(bestCPU.getBoostClock())) {
-                            score++;
-                        }
-                    }
-                    if (CPUs.get(i).getThreads() > bestCPU.getThreads()) {
+                }
+                if (CPUs.get(i).getBoostClock() != null && bestCPU.getBoostClock() != null) {
+                    if (Double.parseDouble(CPUs.get(i).getBoostClock()) > Double.parseDouble(bestCPU.getBoostClock())) {
                         score++;
                     }
-                    if (CPUs.get(i).getCores() > bestCPU.getCores()) {
-                        score++;
-                    }
-                    if (score >= 3) {
-                        bestCPU = CPUs.get(i);
-                    }
+                }
+                if (CPUs.get(i).getThreads() > bestCPU.getThreads()) {
+                    score++;
+                }
+                if (CPUs.get(i).getCores() > bestCPU.getCores()) {
+                    score++;
+                }
+                if (score >= 3) {
+                    bestCPU = CPUs.get(i);
                 }
             } else {
                 bestCPU = CPUs.get(i);
             }
 
-            if (bestCPU != null) {
-                computer.setCpu(bestCPU);
+        }
+        if (bestCPU != null) {
+            computer.setCpu(bestCPU);
+            getBestPossibleMotherBoard(amount - bestCPU.getPrice());
+        }
+        return 0;
+    }
+
+    private int getBestPossibleMotherBoard(int amount) {
+        double motherboardAmount = amount * 0.40;
+        motherBoards = (List<MotherBoard>) getComponents("http://localhost:8080", "motherboards", new TypeToken<List<MotherBoard>>() {
+        }.getType(), (int) motherboardAmount);
+        MotherBoard bestMotherBoard = null;
+        int score = 0;
+        for (int i = 0; i < motherBoards.size(); i++) {
+            if (motherBoards.get(i).getSupportedRam() != null || motherBoards.get(i).getSocket() != null) {
+                if (bestMotherBoard != null && bestMotherBoard.getPrice()!=0) {
+                    if (bestMotherBoard.getSocket().equals(computer.getCpu().getSocket())) {
+
+                        if (motherBoards.get(i).getMdot2() > bestMotherBoard.getMdot2()) {
+                            score++;
+                        }
+                        if (score == 1) {
+                            bestMotherBoard = motherBoards.get(i);
+                        }
+                    }
+                } else {
+                    bestMotherBoard = motherBoards.get(i);
+                }
             }
         }
-        return bestCPU.getPrice();
+
+        if (bestMotherBoard != null) {
+            computer.setMotherBoard(bestMotherBoard);
+            getBestPossibleRAM(amount - bestMotherBoard.getPrice());
+            return bestMotherBoard.getPrice();
+        }
+        return 0;
     }
 
     private int getBestPossibleRAM(int amount) {
+        double ramAmount = amount * 0.40;
         RAMs = (List<RandomAccessMemory>) getComponents("http://localhost:8080", "ram", new TypeToken<List<RandomAccessMemory>>() {
-        }.getType(), amount);
+        }.getType(), (int) ramAmount);
         RandomAccessMemory bestRAM = null;
         for (int i = 0; i < RAMs.size(); i++) {
             int score = 0;
@@ -190,63 +219,16 @@ public class Builder {
 
         if (bestRAM != null) {
             computer.setRam(bestRAM);
+            getBestPossibleStorage(amount - bestRAM.getPrice());
+            return bestRAM.getPrice();
         }
-        return bestRAM.getPrice();
-    }
-
-    private int getBestPossibleMotherBoard(int amount) {
-        motherBoards = (List<MotherBoard>) getComponents("http://localhost:8080", "motherboards", new TypeToken<List<MotherBoard>>() {
-        }.getType(), amount);
-        MotherBoard bestMotherBoard = null;
-        int score = 0;
-        for (int i = 0; i < motherBoards.size(); i++) {
-            if (motherBoards.get(i).getSupportedRam() != null || motherBoards.get(i).getSocket() != null) {
-                if (bestMotherBoard != null) {
-                    if (motherBoards.get(i).getMdot2() > bestMotherBoard.getMdot2()) {
-                        score++;
-                    }
-                    if (score == 1) {
-                        bestMotherBoard = motherBoards.get(i);
-                    }
-                } else {
-                    bestMotherBoard = motherBoards.get(i);
-                }
-            }
-        }
-
-        if (bestMotherBoard != null) {
-            computer.setMotherBoard(bestMotherBoard);
-        }
-        return bestMotherBoard.getPrice();
-    }
-
-    private int getBestPossibleChassi(int amount) {
-        chassis = (List<Chassi>) getComponents("http://localhost:8080", "chassi", new TypeToken<List<Chassi>>() {
-        }.getType(), amount);
-        Chassi bestChassi = null;
-        int score = 0;
-        for (int i = 0; i < chassis.size(); i++) {
-
-            if (computer.getMotherBoard().getFormFactor().equals(chassis.get(i).getFormFactor())) {
-                if (bestChassi != null) {
-                    if (chassis.get(i).getPrice() > bestChassi.getPrice()) {
-                        score++;
-                    }
-                } else {
-                    bestChassi = chassis.get(i);
-                }
-            }
-        }
-        if (bestChassi != null) {
-            computer.setChassi(bestChassi);
-        }
-
-        return bestChassi.getPrice();
+        return 0;
     }
 
     private int getBestPossibleStorage(int amount) {
+        double storageAmount = amount * 0.50;
         storages = (List<Storage>) getComponents("http://localhost:8080", "storage", new TypeToken<List<Storage>>() {
-        }.getType(), amount);
+        }.getType(), (int) storageAmount);
         Storage bestStorage = null;
         int score = 0;
         for (int i = 0; i < storages.size(); i++) {
@@ -274,14 +256,43 @@ public class Builder {
 
         if (bestStorage != null) {
             computer.setStorage(bestStorage);
+            getBestPossibleChassi(amount - bestStorage.getPrice());
+            return bestStorage.getPrice();
         }
-        return bestStorage.getPrice();
+        return 0;
     }
 
-    private int getBestPossiblePSU(int amount){
+    private int getBestPossibleChassi(int amount) {
+        double chassiAmount = amount * 0.30;
 
+        chassis = (List<Chassi>) getComponents("http://localhost:8080", "chassi", new TypeToken<List<Chassi>>() {
+        }.getType(), (int) chassiAmount);
+        Chassi bestChassi = null;
+        int score = 0;
+        for (int i = 0; i < chassis.size(); i++) {
+
+            if (computer.getMotherBoard().getFormFactor().equals(chassis.get(i).getFormFactor())) {
+                if (bestChassi != null) {
+                    if (chassis.get(i).getPrice() > bestChassi.getPrice()) {
+                        score++;
+                    }
+                } else {
+                    bestChassi = chassis.get(i);
+                }
+            }
+        }
+        if (bestChassi != null) {
+            computer.setChassi(bestChassi);
+            getBestPossiblePSU(amount - bestChassi.getPrice());
+            return bestChassi.getPrice();
+        }
+        return 0;
+    }
+
+    private int getBestPossiblePSU(int amount) {
+        double psuAmount = amount;
         PSUs = (List<PowerSupplyUnit>) getComponents("http://localhost:8080", "psu", new TypeToken<List<PowerSupplyUnit>>() {
-        }.getType(), amount);
+        }.getType(), (int) psuAmount);
         PowerSupplyUnit bestPSU = null;
         int score = 0;
         for (int i = 0; i < PSUs.size(); i++) {
@@ -301,10 +312,12 @@ public class Builder {
             } else {
                 bestPSU = PSUs.get(i);
             }
-
         }
 
-
+        if (bestPSU != null) {
+            computer.setPsu(bestPSU);
+            return bestPSU.getPrice();
+        }
         return 0;
     }
 
