@@ -36,4 +36,9 @@ public class GraphicsCardResource {
     public List<GraphicsCard> saveAllGraphicsCards(@RequestBody List<GraphicsCard> graphicsCardList){
         return service.saveAll(graphicsCardList);
     }
+
+    @PutMapping("match")
+    public void matchAll(){
+        service.matchAll();
+    }
 }

@@ -45,6 +45,11 @@ public class ProductResource {
         return service.updateProductsByUrl(listToBeUpdated);
     }
 
+    @GetMapping("delete/{id}")
+    public void deleteProduct(@PathVariable("id")Long id){
+         service.deleteProduct(id);
+    }
+
 
 
 }

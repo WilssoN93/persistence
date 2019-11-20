@@ -26,6 +26,10 @@ public class ProductService {
         return repository.findAllByTypeOfHardWareIsNullAndDomainName(domainName);
     }
 
+    public void deleteProduct(Long id){
+        repository.deleteById(id);
+    }
+
     public List<Product> findAllByDomain(String domainName){
         return repository.findAllByDomainName(domainName);
     }

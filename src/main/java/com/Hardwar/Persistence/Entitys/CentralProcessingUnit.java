@@ -15,7 +15,6 @@ public class CentralProcessingUnit extends ComputerComponent {
     String domain;
     String imgUrl;
     String articleNumber;
-    String originalPrice;
     String socket;
     String coreClock;
     String boostClock;
@@ -57,11 +56,6 @@ public class CentralProcessingUnit extends ComputerComponent {
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
-    }
-
-    @Column(name = "originalprice")
-    public String getOriginalPrice() {
-        return originalPrice;
     }
 
     @Column(name = "socket")
@@ -117,10 +111,6 @@ public class CentralProcessingUnit extends ComputerComponent {
         this.articleNumber = articleNumber;
     }
 
-    public void setOriginalPrice(String originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
     public void setSocket(String socket) {
         this.socket = socket;
     }
@@ -152,7 +142,6 @@ public class CentralProcessingUnit extends ComputerComponent {
                 ", domain='" + domain + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", articleNumber='" + articleNumber + '\'' +
-                ", originalPrice='" + originalPrice + '\'' +
                 ", socket='" + socket + '\'' +
                 ", coreClock='" + coreClock + '\'' +
                 ", boostClock='" + boostClock + '\'' +

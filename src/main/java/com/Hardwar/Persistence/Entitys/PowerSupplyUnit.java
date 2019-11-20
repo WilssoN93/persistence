@@ -14,7 +14,7 @@ public class PowerSupplyUnit extends ComputerComponent {
     String url;
     String imgUrl;
     String formFactor;
-    String GPUconnection;
+    String gpuConnection;
     int capacity;
 
     @Id
@@ -69,12 +69,12 @@ public class PowerSupplyUnit extends ComputerComponent {
     }
 
     @Column(name  = "gpuconnection")
-    public String getGPUconnection() {
-        return GPUconnection;
+    public String getGpuConnection() {
+        return gpuConnection;
     }
 
-    public void setGPUconnection(String GPUconnection) {
-        this.GPUconnection = GPUconnection;
+    public void setGpuConnection(String gpuConnection) {
+        this.gpuConnection = gpuConnection;
     }
 
     public void setDomainName(String domainName) {
@@ -119,19 +119,19 @@ public class PowerSupplyUnit extends ComputerComponent {
 
     boolean modular;
 
-
     @Override
     public String toString() {
         return "PowerSupplyUnit{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 ", articleNumber='" + articleNumber + '\'' +
                 ", domainName='" + domainName + '\'' +
                 ", url='" + url + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", formFactor='" + formFactor + '\'' +
-                ", capacity='" + capacity + '\'' +
+                ", gpuConnection='" + gpuConnection + '\'' +
+                ", capacity=" + capacity +
                 ", modular=" + modular +
                 '}';
     }
