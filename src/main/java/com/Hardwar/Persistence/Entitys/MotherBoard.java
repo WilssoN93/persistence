@@ -6,12 +6,8 @@ import javax.persistence.*;
 @Table(name = "motherboard")
 public class MotherBoard extends ComputerComponent {
 
-    Long id;
-    String name;
-    int price;
     String domainName;
     String articleNumber;
-    String url;
     String imgUrl;
     String socket;
     String formFactor;
@@ -22,20 +18,11 @@ public class MotherBoard extends ComputerComponent {
     String mdot2Key;
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
+
 
     @Column(name = "speeds")
     public int getSpeeds() {
         return speeds;
-    }
-
-    @Column(name = "`name`")
-    public String getName() {
-        return name;
     }
 
     @Column(name = "domainname")
@@ -43,20 +30,11 @@ public class MotherBoard extends ComputerComponent {
         return domainName;
     }
 
-    @Column(name = "price")
-    public int getPrice() {
-        return price;
-    }
-
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
     }
 
-    @Column(name = "url")
-    public String getUrl() {
-        return url;
-    }
 
     @Column(name = "imgurl")
     public String getImgUrl() {
@@ -105,28 +83,12 @@ public class MotherBoard extends ComputerComponent {
         this.mdot2Key = mdot2Key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public void setDomainName(String domainName) {
         this.domainName = domainName;
     }
 
     public void setArticleNumber(String articleNumber) {
         this.articleNumber = articleNumber;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setImgUrl(String imgUrl) {

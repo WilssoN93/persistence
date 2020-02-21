@@ -8,10 +8,6 @@ import javax.persistence.*;
 public class CentralProcessingUnit extends ComputerComponent {
 
 
-    Long id;
-    String name;
-    int price;
-    String url;
     String domain;
     String imgUrl;
     String articleNumber;
@@ -21,31 +17,9 @@ public class CentralProcessingUnit extends ComputerComponent {
     int threads;
     int cores;
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
     @Column(name = "domain")
     public String getDomain() {
         return domain;
-    }
-
-    @Column(name = "`name`")
-    public String getName() {
-        return name;
-    }
-
-    @Column(name = "price")
-    public int getPrice() {
-        return price;
-    }
-
-    @Column(name = "url")
-    public String getUrl() {
-        return url;
     }
 
     @Column(name = "imgurl")
@@ -83,24 +57,8 @@ public class CentralProcessingUnit extends ComputerComponent {
         return cores;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setDomain(String domain) {
         this.domain = domain;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setImgUrl(String imgUrl) {

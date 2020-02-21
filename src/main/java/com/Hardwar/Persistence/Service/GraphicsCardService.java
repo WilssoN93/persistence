@@ -25,6 +25,10 @@ public class GraphicsCardService {
         return repository.findAll();
     }
 
+    public List<GraphicsCard> getAllNonParsedGPUs(){
+        return repository.findAllByParsedFalse();
+    }
+
     public List<GraphicsCard> saveAll(List<GraphicsCard> graphicsCardsList) {
         GraphicsCard graphicsCard = null;
         for (GraphicsCard gpu:graphicsCardsList) {

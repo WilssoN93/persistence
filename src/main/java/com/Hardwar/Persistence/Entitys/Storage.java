@@ -6,12 +6,8 @@ import javax.persistence.*;
 @Table(name = "storage")
 public class Storage extends ComputerComponent {
 
-    Long id;
-    String name;
-    int price;
     String articleNumber;
     String domainName;
-    String url;
     String imgUrl;
     int size;
     String type;
@@ -21,30 +17,10 @@ public class Storage extends ComputerComponent {
     String mdot2key;
     String mdot2size;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
-    @Column(name = "`name`")
-    public String getName() {
-        return name;
-    }
-
-    @Column(name = "price")
-    public int getPrice() {
-        return price;
-    }
 
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
-    }
-
-    @Column(name = "url")
-    public String getUrl() {
-        return url;
     }
 
     @Column(name = "imgurl")
@@ -104,24 +80,8 @@ public class Storage extends ComputerComponent {
         this.domainName = domainName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public void setArticleNumber(String articleNumber) {
         this.articleNumber = articleNumber;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setImgUrl(String imgUrl) {

@@ -17,7 +17,7 @@ public class GraphicsCardResource {
     @GetMapping
     public @ResponseBody
     List<GraphicsCard> getAllGraphicsCards(){
-        return service.getAllGraphicsCards();
+        return service.getAllNonParsedGPUs();
     }
 
     @GetMapping("{domainName}")

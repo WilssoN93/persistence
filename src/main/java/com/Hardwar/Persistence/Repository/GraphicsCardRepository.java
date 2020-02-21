@@ -12,4 +12,6 @@ public interface GraphicsCardRepository extends JpaRepository<GraphicsCard,Long>
     List<GraphicsCard> findAllByDomainName(String domainName);
     List<GraphicsCard> findAllByPriceIsLessThanEqual(int price);
     GraphicsCard findByUrl(String url);
+
+    List<GraphicsCard> findAllByParsedFalse();
 }

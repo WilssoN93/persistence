@@ -46,10 +46,6 @@ public class ProductService {
         return productsByType;
     }
 
-    public Product addProduct(Product product) {
-        return repository.save(product);
-    }
-
     public List<Product> addAllProducts(List<Product> productList) {
         for (Product product : productList) {
             if (!findAll().stream().map(Product::getUrl).collect(Collectors.toList()).contains(product.getUrl())) {

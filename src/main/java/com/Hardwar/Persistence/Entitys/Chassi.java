@@ -6,36 +6,20 @@ import javax.persistence.*;
 @Table(name = "chassi")
 public class Chassi extends ComputerComponent {
 
-    Long id;
-    String name;
-    int price;
     String articleNumber;
     String domainName;
-    String url;
     String imgUrl;
     String formFactor;
     String maxHeightCpuCooler;
     String maxGpuWidth;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
 
-    @Column(name = "price")
-    public int getPrice() {
-        return price;
-    }
+
+
 
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
-    }
-
-    @Column(name = "url")
-    public String getUrl() {
-        return url;
     }
 
     @Column(name = "imgurl")
@@ -43,10 +27,6 @@ public class Chassi extends ComputerComponent {
         return imgUrl;
     }
 
-    @Column(name = "`name`")
-    public String getName() {
-        return name;
-    }
 
     @Column(name = "formfactor")
     public String getFormFactor() {
@@ -72,24 +52,8 @@ public class Chassi extends ComputerComponent {
         this.domainName = domainName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public void setArticleNumber(String articleNumber) {
         this.articleNumber = articleNumber;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setImgUrl(String imgUrl) {

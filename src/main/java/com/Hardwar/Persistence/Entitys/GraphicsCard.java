@@ -6,43 +6,15 @@ import javax.persistence.*;
 @Table(name = "graphicscard")
 public class GraphicsCard extends ComputerComponent {
 
-    Long id;
-    String url;
-    String name;
 
-     @Column(name = "url")
-    public String getUrl() {
-        return url;
-    }
-
-    @Override
-    public String toString() {
-        return "GraphicsCard{" +
-                "id=" + id +
-                ", url='" + url + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", imgUrl='" + imgUrl + '\'' +
-                ", articleNumber='" + articleNumber + '\'' +
-                ", coreClock=" + coreClock +
-                ", boostClock=" + boostClock +
-                ", cudaCores=" + cudaCores +
-                ", connection='" + connection + '\'' +
-                ", domainName='" + domainName + '\'' +
-                ", capacity=" + capacity +
-                '}';
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    int price;
     String imgUrl;
     String articleNumber;
     int coreClock;
     int boostClock;
     int cudaCores;
+    String connection;
+    String domainName;
+    int capacity;
 
     @Column(name = "capacity")
     public int getCapacity() {
@@ -53,10 +25,6 @@ public class GraphicsCard extends ComputerComponent {
         this.capacity = capacity;
     }
 
-    String connection;
-    String domainName;
-    int capacity;
-
     @Column(name = "domainname")
     public String getDomainName() {
         return domainName;
@@ -66,32 +34,6 @@ public class GraphicsCard extends ComputerComponent {
         this.domainName = domainName;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "`name`")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column(name = "price")
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     @Column(name = "imgurl")
     public String getImgUrl() {
@@ -146,5 +88,24 @@ public class GraphicsCard extends ComputerComponent {
     public void setConnection(String connection) {
         this.connection = connection;
     }
+
+    @Override
+    public String toString() {
+        return "GraphicsCard{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", articleNumber='" + articleNumber + '\'' +
+                ", coreClock=" + coreClock +
+                ", boostClock=" + boostClock +
+                ", cudaCores=" + cudaCores +
+                ", connection='" + connection + '\'' +
+                ", domainName='" + domainName + '\'' +
+                ", capacity=" + capacity +
+                '}';
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package com.Hardwar.Persistence.Utils;
 
 import com.Hardwar.Persistence.Entitys.*;
+import com.Hardwar.Persistence.Repository.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.http.HttpEntity;
@@ -11,6 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,6 +23,22 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 @Service
 public class Builder {
+
+    @Autowired
+    CentralProcessingUnitRepository cpuRepository;
+    @Autowired
+    MotherBoardRepository motherBoardRepository;
+    @Autowired
+    PowerSupplyUnitRepository powerSupplyUnitRepository;
+    @Autowired
+    RandomAccessMemoryRepository ramRepository;
+    @Autowired
+    StorageRepository storageRepository;
+    @Autowired
+    GraphicsCardRepository graphicsCardRepository;
+    @Autowired
+    ChassiRepository chassiRepository;
+
 
     CloseableHttpClient client;
     HttpGet get;
@@ -384,8 +402,8 @@ public class Builder {
             storageModifier = 0.30;
             chassiModifier = 0.60;
         }else if(budget > HIGH){
-            gpuModifier = 0.45;
-            cpuModifier = 0.45;
+            gpuModifier = 0.60;
+            cpuModifier = 0.40;
             motherBoardModifier = 0.40;
             ramModifier = 0.40;
             storageModifier = 0.50;

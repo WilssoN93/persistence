@@ -6,41 +6,18 @@ import javax.persistence.*;
 @Table(name = "powersupplyunit")
 public class PowerSupplyUnit extends ComputerComponent {
 
-    Long id;
-    String name;
-    int price;
     String articleNumber;
     String domainName;
-    String url;
     String imgUrl;
     String formFactor;
     String gpuConnection;
     int capacity;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
+
 
     @Column(name = "articlenumber")
     public String getArticleNumber() {
         return articleNumber;
-    }
-
-    @Column(name = "price")
-    public int getPrice() {
-        return price;
-    }
-
-    @Column(name = "url")
-    public String getUrl() {
-        return url;
-    }
-
-    @Column(name = "`name`")
-    public String getName() {
-        return name;
     }
 
     @Column(name = "formfactor")
@@ -81,24 +58,8 @@ public class PowerSupplyUnit extends ComputerComponent {
         this.domainName = domainName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public void setArticleNumber(String articleNumber) {
         this.articleNumber = articleNumber;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setImgUrl(String imgUrl) {

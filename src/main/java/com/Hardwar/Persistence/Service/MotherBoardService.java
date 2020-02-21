@@ -24,6 +24,10 @@ public class MotherBoardService {
         return repository.findAllByPriceIsLessThanEqual(amount);
     }
 
+    public List<MotherBoard> getAllMotherBoardsByPriceAndSocket(int amount,String socket){
+        return repository.findAllByPriceIsLessThanEqualAndAndSocket(amount,socket);
+    }
+
     public List<MotherBoard> saveAllMotherBoards(List<MotherBoard> motherBoards){
         List<MotherBoard> allMotherBoards = getAllMotherBoards();
 

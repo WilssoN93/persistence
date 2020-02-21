@@ -8,4 +8,5 @@ import java.util.List;
 public interface MotherBoardRepository extends JpaRepository<MotherBoard,Long> {
     List<MotherBoard> findAllByDomainName(String domainName);
     List<MotherBoard> findAllByPriceIsLessThanEqual(int amount);
+    List<MotherBoard> findAllByPriceIsLessThanEqualAndAndSocket(int amount,String socket);
 }
