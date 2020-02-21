@@ -39,11 +39,6 @@ public class Builder {
     @Autowired
     ChassiRepository chassiRepository;
 
-
-    CloseableHttpClient client;
-    HttpGet get;
-    String json;
-    Gson gson = new Gson();
     List<Storage> storages;
     List<RandomAccessMemory> RAMs;
     List<CentralProcessingUnit> CPUs;
@@ -51,7 +46,9 @@ public class Builder {
     List<PowerSupplyUnit> PSUs;
     List<MotherBoard> motherBoards;
     List<Chassi> chassis;
+
     Computer computer;
+
     private double gpuModifier;
     private double cpuModifier;
     private double motherBoardModifier;
@@ -74,45 +71,10 @@ public class Builder {
         return computer;
     }
 
-    public List<? extends ComputerComponent> getComponents(String host, String endpoint, Type type, int amount) {
-
-        client = HttpClients.createDefault();
-        List<? extends ComputerComponent> components = new ArrayList<>();
-        Type component = type;
-        try {
-            get = new HttpGet(host + "/" + endpoint + "/price/" + amount);
-            System.out.println("Executing " + get.getRequestLine());
-            get.addHeader("Content-Type", "application/json");
-            get.addHeader("Accept", "application/json;charset=UTF-8");
-            ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-                @Override
-                public String handleResponse(HttpResponse httpResponse) throws IOException {
-                    int statusCode = httpResponse.getStatusLine().getStatusCode();
-                    if (statusCode >= 200 && statusCode < 300) {
-                        HttpEntity entity = httpResponse.getEntity();
-                        json = EntityUtils.toString(entity);
-
-                        return json;
-                    } else {
-                        throw new ClientProtocolException("Unexpected response status: " + statusCode);
-                    }
-                }
-            };
-            String response = client.execute(get, responseHandler);
-            components = gson.fromJson(response, component);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return components;
-
-    }
-
     private int getBestPossibleGraphicsCard(int amount) {
         double gpuAmount = amount * gpuModifier;
         System.out.println(gpuAmount);
-        GPUs = (List<GraphicsCard>) getComponents("http://localhost:8080", "graphicscard", new TypeToken<List<GraphicsCard>>() {
-        }.getType(), (int) gpuAmount);
+        GPUs = graphicsCardRepository.findAllByPriceIsLessThanEqual((int)gpuAmount);
 
         GraphicsCard bestGraphicsCard = null;
         for (int i = 0; i < GPUs.size(); i++) {
@@ -144,8 +106,7 @@ public class Builder {
 
     private int getBestPossibleCPU(int amount) {
         double cpuAmount = amount * cpuModifier;
-        CPUs = (List<CentralProcessingUnit>) getComponents("http://localhost:8080", "cpu", new TypeToken<List<CentralProcessingUnit>>() {
-        }.getType(), (int) cpuAmount);
+        CPUs = cpuRepository.findAllByPriceIsLessThanEqual((int)cpuAmount);
         CentralProcessingUnit bestCPU = null;
         for (int i = 0; i < CPUs.size(); i++) {
             double score = 0;
@@ -196,8 +157,7 @@ public class Builder {
 
     private int getBestPossibleMotherBoard(int amount) {
         double motherboardAmount = amount * motherBoardModifier;
-        motherBoards = (List<MotherBoard>) getComponents("http://localhost:8080", "motherboards", new TypeToken<List<MotherBoard>>() {
-        }.getType(), (int) motherboardAmount);
+        motherBoards = motherBoardRepository.findAllByPriceIsLessThanEqual((int)motherboardAmount);
         MotherBoard bestMotherBoard = null;
         for (int i = 0; i < motherBoards.size(); i++) {
             int score = 0;
@@ -233,8 +193,7 @@ public class Builder {
 
     private int getBestPossibleRAM(int amount) {
         double ramAmount = amount * ramModifier;
-        RAMs = (List<RandomAccessMemory>) getComponents("http://localhost:8080", "ram", new TypeToken<List<RandomAccessMemory>>() {
-        }.getType(), (int) ramAmount);
+       RAMs = ramRepository.findAllByPriceIsLessThanEqual((int)ramAmount);
         RandomAccessMemory bestRAM = null;
         for (int i = 0; i < RAMs.size(); i++) {
             int score = 0;
@@ -265,8 +224,7 @@ public class Builder {
 
     private int getBestPossibleStorage(int amount) {
         double storageAmount = amount * storageModifier;
-        storages = (List<Storage>) getComponents("http://localhost:8080", "storage", new TypeToken<List<Storage>>() {
-        }.getType(), (int) storageAmount);
+        storages = storageRepository.findAllByPriceIsLessThanEqual((int)storageAmount);
         Storage bestStorage = null;
         for (int i = 0; i < storages.size(); i++) {
             int score = 0;
@@ -307,8 +265,7 @@ public class Builder {
     private int getBestPossibleChassi(int amount) {
         double chassiAmount = amount * chassiModifier;
 
-        chassis = (List<Chassi>) getComponents("http://localhost:8080", "chassi", new TypeToken<List<Chassi>>() {
-        }.getType(), (int) chassiAmount);
+        chassis = chassiRepository.findAllByPriceIsLessThanEqual((int)chassiAmount);
         Chassi bestChassi = null;
         int score = 0;
         for (int i = 0; i < chassis.size(); i++) {
@@ -335,8 +292,7 @@ public class Builder {
 
     private int getBestPossiblePSU(int amount) {
         double psuAmount = amount;
-        PSUs = (List<PowerSupplyUnit>) getComponents("http://localhost:8080", "psu", new TypeToken<List<PowerSupplyUnit>>() {
-        }.getType(), (int) psuAmount);
+        PSUs = powerSupplyUnitRepository.findAllByPriceIsLessThanEqual((int)psuAmount);
         PowerSupplyUnit bestPSU = null;
         int score = 0;
         for (int i = 0; i < PSUs.size(); i++) {
