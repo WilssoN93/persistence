@@ -12,7 +12,10 @@ public class Computer {
     private int totalPrice;
 
     public int getTotalPrice() {
-        return totalPrice;
+
+        if (this.isComplete()) {
+            return this.getGpu().getPrice() + this.getMotherBoard().getPrice() + this.getCpu().getPrice() + this.getRam().getPrice() + this.getChassi().getPrice() + this.getPsu().getPrice() + this.getStorage().getPrice();
+        } else return 0;
     }
 
     public void setTotalPrice(int totalPrice) {
@@ -87,5 +90,13 @@ public class Computer {
                 ", psu=" + psu +
                 ", totalPrice=" + totalPrice +
                 '}';
+    }
+
+    public boolean isComplete() {
+        if (this.gpu == null || this.cpu == null || this.chassi == null || this.storage == null || this.motherBoard == null || this.ram == null || this.psu == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
