@@ -25,6 +25,10 @@ public class CentralProcessingUnitService {
         return repository.findAllByDomain(domainName);
     }
 
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
     public List<CentralProcessingUnit> saveAll(List<CentralProcessingUnit> cpuList) {
         List<CentralProcessingUnit> allCPUs = getAllCPUs();
 

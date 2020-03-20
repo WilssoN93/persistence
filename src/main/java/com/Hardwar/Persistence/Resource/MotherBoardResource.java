@@ -34,6 +34,11 @@ public class MotherBoardResource {
         return service.getAllMotherBoardsByPriceAndSocket(amount,socket);
     }
 
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
+    }
+
     @PutMapping
     public List<MotherBoard> saveAllMotherBoards(@RequestBody List<MotherBoard> motherBoards){
         return service.saveAllMotherBoards(motherBoards);

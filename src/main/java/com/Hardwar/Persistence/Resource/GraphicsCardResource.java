@@ -3,8 +3,10 @@ package com.Hardwar.Persistence.Resource;
 import com.Hardwar.Persistence.Entitys.GraphicsCard;
 import com.Hardwar.Persistence.Service.GraphicsCardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 @RestController
@@ -35,6 +37,11 @@ public class GraphicsCardResource {
     @PutMapping
     public List<GraphicsCard> saveAllGraphicsCards(@RequestBody List<GraphicsCard> graphicsCardList){
         return service.saveAll(graphicsCardList);
+    }
+
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
     }
 
     @PutMapping("match")

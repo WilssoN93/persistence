@@ -21,6 +21,9 @@ public class PowerSupplyUnitService {
     public List<PowerSupplyUnit> getAllByPrice(int amount){
         return repo.findAllByPriceIsLessThanEqual(amount);
     }
+    public void delete(Long id){
+        repo.deleteById(id);
+    }
 
     public List<PowerSupplyUnit> saveAll(List<PowerSupplyUnit> powerSupplyUnits) {
         List<PowerSupplyUnit> allPSUs = getAllPSUs();

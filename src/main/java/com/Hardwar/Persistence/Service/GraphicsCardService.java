@@ -43,6 +43,10 @@ public class GraphicsCardService {
         return graphicsCardsList;
     }
 
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
     public void matchAll() {
         List<GraphicsCard> graphicsCardsList = repository.findAll();
         for (int i = 0; i < graphicsCardsList.size(); i++) {

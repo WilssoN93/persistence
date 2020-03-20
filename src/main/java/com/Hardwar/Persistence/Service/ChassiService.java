@@ -23,6 +23,9 @@ public class ChassiService {
     public List<Chassi> getAllByPrice(int amount){
         return repo.findAllByPriceIsLessThanEqual(amount);
     }
+    public void delete(Long id){
+        repo.deleteById(id);
+    }
     public List<Chassi> saveAll(List<Chassi> chassis) {
         List<Chassi> allChassis = getAllChassis();
 

@@ -26,6 +26,11 @@ public class CentralProcessingUnitResource {
         return service.getAllCPUsByPrice(amount);
     }
 
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
+    }
+
     @GetMapping(path = "{domainName}")
     public List<CentralProcessingUnit> getAllByDomainName(@PathVariable("domainName")String domainName){
         return service.getAllCPUsByDomainName(domainName);

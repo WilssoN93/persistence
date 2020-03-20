@@ -25,6 +25,10 @@ public class StorageService {
         return repo.findAllByPriceIsLessThanEqual(amount);
     }
 
+    public void delete(Long id){
+        repo.deleteById(id);
+    }
+
     public List<Storage> saveAllStorage(List<Storage> storages) {
         List<Storage> allStorage = getAllStorage();
 

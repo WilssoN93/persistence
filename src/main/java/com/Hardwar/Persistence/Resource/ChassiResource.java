@@ -26,6 +26,11 @@ public class ChassiResource {
         return service.getAllByDomain(domainName);
     }
 
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
+    }
+
     @GetMapping(path = "price/{amount}")
     public @ResponseBody
     List<Chassi> getAllbyDomain(@PathVariable("amount")int amount){

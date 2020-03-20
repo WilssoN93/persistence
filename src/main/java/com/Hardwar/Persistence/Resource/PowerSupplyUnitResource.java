@@ -30,6 +30,11 @@ public class PowerSupplyUnitResource {
         return service.getAllByPrice(amount);
     }
 
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
+    }
+
     @PutMapping
     public List<PowerSupplyUnit> saveAllRAM(@RequestBody List<PowerSupplyUnit> PSUs){
         return service.saveAll(PSUs);

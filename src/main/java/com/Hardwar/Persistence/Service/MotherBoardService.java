@@ -28,6 +28,10 @@ public class MotherBoardService {
         return repository.findAllByPriceIsLessThanEqualAndAndSocket(amount,socket);
     }
 
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
     public List<MotherBoard> saveAllMotherBoards(List<MotherBoard> motherBoards){
         List<MotherBoard> allMotherBoards = getAllMotherBoards();
 

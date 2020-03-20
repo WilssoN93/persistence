@@ -20,6 +20,9 @@ public class RandomAccessMemoryService {
     public List<RandomAccessMemory> getAllByDomain(String domainName){
         return repository.findAllByDomainName(domainName);
     }
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
 
     public List<RandomAccessMemory> getAllByPrice(int amount){
         return repository.findAllByPriceIsLessThanEqual(amount);

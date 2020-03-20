@@ -31,6 +31,11 @@ public class StorageResource {
         return service.getAllStorage();
     }
 
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
+    }
+
     @PutMapping
     public List<Storage> saveAllRAM(@RequestBody List<Storage> listOfStorage){
         return service.saveAllStorage(listOfStorage);

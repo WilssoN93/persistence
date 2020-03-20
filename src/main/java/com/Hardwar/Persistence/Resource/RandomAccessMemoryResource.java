@@ -29,6 +29,11 @@ public class RandomAccessMemoryResource {
         return service.getAllByPrice(amount);
     }
 
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
+    }
+
     @PutMapping
     public List<RandomAccessMemory> saveAllRAM(@RequestBody List<RandomAccessMemory> listOfRAM){
         return service.saveAllRAM(listOfRAM);
