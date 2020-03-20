@@ -42,7 +42,7 @@ public class ProductResource {
 
     @PutMapping
     public List<Product> updateProducts(@RequestBody List<Product> listToBeUpdated){
-        return service.updateProductsByUrl(listToBeUpdated);
+        return service.updateProducts(listToBeUpdated);
     }
 
     @GetMapping("delete/{id}")

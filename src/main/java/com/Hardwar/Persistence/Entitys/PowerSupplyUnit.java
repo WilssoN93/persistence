@@ -10,10 +10,18 @@ public class PowerSupplyUnit extends ComputerComponent {
     String domainName;
     String imgUrl;
     String formFactor;
+    int certPoints;
     String gpuConnection;
     int capacity;
 
+    @Column(name = "certpoints")
+    public int getCertPoints() {
+        return certPoints;
+    }
 
+    public void setCertPoints(int certPoints) {
+        this.certPoints = certPoints;
+    }
 
     @Column(name = "articlenumber")
     public String getArticleNumber() {
@@ -83,14 +91,11 @@ public class PowerSupplyUnit extends ComputerComponent {
     @Override
     public String toString() {
         return "PowerSupplyUnit{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", articleNumber='" + articleNumber + '\'' +
+                "articleNumber='" + articleNumber + '\'' +
                 ", domainName='" + domainName + '\'' +
-                ", url='" + url + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", formFactor='" + formFactor + '\'' +
+                ", certPoints=" + certPoints +
                 ", gpuConnection='" + gpuConnection + '\'' +
                 ", capacity=" + capacity +
                 ", modular=" + modular +

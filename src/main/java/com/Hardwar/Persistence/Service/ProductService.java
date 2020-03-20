@@ -34,7 +34,7 @@ public class ProductService {
         return repository.findAllByDomainName(domainName);
     }
     public List<Product> findAllByDomainNameAndType(String domainName,String hardWareType) {
-        List<Product> allProductsByDomainName = repository.findAllByDomainName(domainName);
+        List<Product> allProductsByDomainName = repository.findAllByDomainNameAndParsedFalse(domainName);
         List<Product> productsByType = new ArrayList<>();
         for (Product product: allProductsByDomainName) {
             if(product.getTypeOfHardWare()!=null) {
@@ -55,7 +55,7 @@ public class ProductService {
         return productList;
     }
 
-    public List<Product> updateProductsByUrl(List<Product> listToBeUpdated) {
+    public List<Product> updateProducts(List<Product> listToBeUpdated) {
         for (Product product : listToBeUpdated) {
             repository.save(product);
         }

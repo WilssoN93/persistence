@@ -12,6 +12,7 @@ public class Product {
     private String url;
     private String domainName;
     private String typeOfHardWare;
+    private boolean parsed;
 
 
     @Id
@@ -50,6 +51,15 @@ public class Product {
 
     public void setTypeOfHardWare(String typeOfHardWare) {
         this.typeOfHardWare = typeOfHardWare;
+    }
+
+    @Column(name = "parsed")
+    public boolean isParsed() {
+        return parsed;
+    }
+
+    public void setParsed(boolean parsed) {
+        this.parsed = parsed;
     }
 
     @Override

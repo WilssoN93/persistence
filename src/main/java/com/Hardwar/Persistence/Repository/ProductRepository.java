@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
+    List<Product> findAllByDomainNameAndParsedFalse(String domainName);
     List<Product> findAllByDomainName(String domainName);
     List<Product> findAllByTypeOfHardWareIsNullAndDomainName(String domainName);
 }

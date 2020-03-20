@@ -41,14 +41,9 @@ public class Builder {
 
 
     private Map<String, Double> budgetMap;
-    private final int HIGH = 18000;
-    private final int MEDIUM_HIGH = 13000;
-    private final int MEDIUM = 10000;
-    private final int MEDIUM_LOW = 8000;
-    private final int LOW = 5000;
-    int counter = 0;
+    private double remainder = 0;
+
     public Computer getAComputer(int budget) {
-        counter = 1;
         computer = new Computer();
         budgetMap = new HashMap<>();
         setBudgetScaling(budget);
@@ -64,12 +59,12 @@ public class Builder {
         for (int i = 0; i < GPUs.size(); i++) {
             if (bestGraphicsCard != null) {
                 int score = 0;
-                if (GPUs.get(i).getBoostClock() == 0 && GPUs.get(i).getCudaCores() != 0){
+                if (GPUs.get(i).getBoostClock() == 0 && GPUs.get(i).getCudaCores() != 0) {
                     score = GPUs.get(i).getCoreClock() * GPUs.get(i).getCudaCores();
-                }else if(bestGraphicsCard.getCudaCores() != 0){
+                } else if (bestGraphicsCard.getCudaCores() != 0) {
                     score = GPUs.get(i).getBoostClock() * GPUs.get(i).getCudaCores();
                 }
-                if (score > bestScore){
+                if (score > bestScore) {
                     bestGraphicsCard = GPUs.get(i);
                     bestScore = score;
                 }
@@ -78,6 +73,7 @@ public class Builder {
             }
         }
         if (bestGraphicsCard != null) {
+            remainder = amount - bestGraphicsCard.getPrice();
             computer.setGpu(bestGraphicsCard);
             return true;
         }
@@ -127,6 +123,7 @@ public class Builder {
 
         }
         if (bestCPU != null) {
+            remainder = amount - bestCPU.getPrice();
             computer.setCpu(bestCPU);
             return true;
         }
@@ -161,6 +158,7 @@ public class Builder {
         }
 
         if (bestMotherBoard != null) {
+            remainder = amount - bestMotherBoard.getPrice();
             computer.setMotherBoard(bestMotherBoard);
 
             return true;
@@ -177,7 +175,7 @@ public class Builder {
                     if (RAMs.get(i).getCapacity() > bestRAM.getCapacity()) {
                         bestRAM = RAMs.get(i);
                     }
-                    if (RAMs.get(i).getCapacity()==bestRAM.getCapacity() && RAMs.get(i).getSpeeds() > bestRAM.getSpeeds()) {
+                    if (RAMs.get(i).getCapacity() == bestRAM.getCapacity() && RAMs.get(i).getSpeeds() > bestRAM.getSpeeds()) {
                         bestRAM = RAMs.get(i);
                     }
                 } else {
@@ -187,6 +185,7 @@ public class Builder {
         }
 
         if (bestRAM != null) {
+            remainder = amount - bestRAM.getPrice();
             computer.setRam(bestRAM);
             return true;
         }
@@ -225,6 +224,7 @@ public class Builder {
         }
 
         if (bestStorage != null) {
+            remainder = amount - bestStorage.getPrice();
             computer.setStorage(bestStorage);
             return true;
         }
@@ -250,6 +250,7 @@ public class Builder {
             }
         }
         if (bestChassi != null) {
+            remainder = amount - bestChassi.getPrice();
             computer.setChassi(bestChassi);
             return true;
         }
@@ -263,11 +264,13 @@ public class Builder {
         for (int i = 0; i < PSUs.size(); i++) {
             if (PSUs.get(i).getCapacity() > computer.getGpu().getCapacity()) {
                 if (bestPSU != null) {
-                    if (PSUs.get(i).isModular()) {
-                        score++;
-                    }
                     if (PSUs.get(i).getFormFactor().equals(computer.getMotherBoard().getFormFactor())) {
-                        score += 2;
+                        if (PSUs.get(i).isModular()) {
+                            score++;
+                        }
+                        if (PSUs.get(i).getCertPoints()>bestPSU.getCertPoints()){
+                            score += 2;
+                        }
                     }
                     if (score >= 3) {
                         bestPSU = PSUs.get(i);
@@ -279,6 +282,7 @@ public class Builder {
         }
 
         if (bestPSU != null) {
+            remainder = amount - bestPSU.getPrice();
             computer.setPsu(bestPSU);
             return true;
         }
@@ -287,32 +291,33 @@ public class Builder {
 
 
     private void buildComputer(int budget) {
+        remainder = 0;
 
-        if (!getBestPossibleGraphicsCard(budgetMap.get("GpuBudget"))) {
+        if (!getBestPossibleGraphicsCard(budgetMap.get("GpuBudget") + remainder)) {
             increaseGraphicCardBudget();
             this.buildComputer(budget);
         }
-        if (!getBestPossibleCPU(budgetMap.get("CpuBudget"))) {
+        if (!getBestPossibleCPU(budgetMap.get("CpuBudget") + remainder)) {
             increaseCpuBudget();
             this.buildComputer(budget);
         }
-        if (!getBestPossibleMotherBoard(budgetMap.get("MotherBoardBudget"))) {
+        if (!getBestPossibleMotherBoard(budgetMap.get("MotherBoardBudget") + remainder)) {
             increaseMotherBoardBudget();
             this.buildComputer(budget);
         }
-        if (!getBestPossibleRAM(budgetMap.get("RAMBudget"))) {
+        if (!getBestPossibleRAM(budgetMap.get("RAMBudget") + remainder)) {
             increaseRAMBudget();
             this.buildComputer(budget);
         }
-        if (!getBestPossibleStorage(budgetMap.get("StorageBudget"))) {
+        if (!getBestPossibleStorage(budgetMap.get("StorageBudget") + remainder)) {
             increaseStorageBudget();
             this.buildComputer(budget);
         }
-        if (!getBestPossibleChassi(budgetMap.get("chassiBudget"))) {
+        if (!getBestPossibleChassi(budgetMap.get("chassiBudget") + remainder)) {
             increaseChassiBudget();
             this.buildComputer(budget);
         }
-        if (!getBestPossiblePSU(budgetMap.get("PSUBudget"))) {
+        if (!getBestPossiblePSU(budgetMap.get("PSUBudget") + remainder)) {
             increasePSUBudget();
             this.buildComputer(budget);
         }
@@ -402,13 +407,13 @@ public class Builder {
     }
 
     private void setBudgetScaling(int budget) {
-            budgetMap.put("GpuBudget", budget * 0.44);
-            budgetMap.put("CpuBudget", budget * 0.20);
-            budgetMap.put("MotherBoardBudget", budget * 0.12);
-            budgetMap.put("RAMBudget", budget * 0.10);
-            budgetMap.put("StorageBudget", budget * 0.10);
-            budgetMap.put("chassiBudget", budget * 0.07);
-            budgetMap.put("PSUBudget", budget * 0.07);
+        budgetMap.put("GpuBudget", budget * 0.42);
+        budgetMap.put("CpuBudget", budget * 0.19);
+        budgetMap.put("MotherBoardBudget", budget * 0.11);
+        budgetMap.put("RAMBudget", budget * 0.10);
+        budgetMap.put("StorageBudget", budget * 0.11);
+        budgetMap.put("chassiBudget", budget * 0.05);
+        budgetMap.put("PSUBudget", budget * 0.07);
     }
 
 
