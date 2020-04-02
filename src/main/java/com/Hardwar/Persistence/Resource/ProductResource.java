@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/product")
+@RequestMapping(path = "product")
 public class ProductResource {
 
     @Autowired
@@ -20,14 +20,9 @@ public class ProductResource {
         return service.findAll();
     }
 
-    @GetMapping(path = "/{domainName}/{hardWareType}")
-    public @ResponseBody
-    List<Product> getAllbyDomainNameAndType(@PathVariable("domainName") String domainName,@PathVariable("hardWareType") String hardWareType){
-        return service.findAllByDomainNameAndType(domainName,hardWareType);
-    }
-    @GetMapping(path = "/{domainName}")
-    public @ResponseBody List<Product> getAllByDomainName(@PathVariable("domainName")String domainName){
-        return service.findAllByDomain(domainName);
+    @GetMapping(path = "{domainName}/parsed")
+    public @ResponseBody List<Product> getAllByDomainNameAndParsedFalse(@PathVariable("domainName")String domainName){
+        return service.findAllByDomainAndParsedFalse(domainName);
     }
 
     @GetMapping(path = "{domainName}/nullvalues")

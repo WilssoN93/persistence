@@ -30,21 +30,10 @@ public class ProductService {
         repository.deleteById(id);
     }
 
-    public List<Product> findAllByDomain(String domainName){
-        return repository.findAllByDomainName(domainName);
+    public List<Product> findAllByDomainAndParsedFalse(String domainName){
+        return repository.findAllByDomainNameAndParsedFalse(domainName);
     }
-    public List<Product> findAllByDomainNameAndType(String domainName,String hardWareType) {
-        List<Product> allProductsByDomainName = repository.findAllByDomainNameAndParsedFalse(domainName);
-        List<Product> productsByType = new ArrayList<>();
-        for (Product product: allProductsByDomainName) {
-            if(product.getTypeOfHardWare()!=null) {
-                if (product.getTypeOfHardWare().toLowerCase().contains(hardWareType.toLowerCase())) {
-                    productsByType.add(product);
-                }
-            }
-        }
-        return productsByType;
-    }
+
 
     public List<Product> addAllProducts(List<Product> productList) {
         for (Product product : productList) {
