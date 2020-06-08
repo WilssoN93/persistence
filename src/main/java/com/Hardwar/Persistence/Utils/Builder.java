@@ -195,26 +195,16 @@ public class Builder {
     private boolean getBestPossibleStorage(double amount) {
         storages = storageRepository.findAllByPriceIsLessThanEqual((int) amount);
         Storage bestStorage = null;
+        int score = 0;
         for (int i = 0; i < storages.size(); i++) {
-            int score = 0;
             if (computer.getMotherBoard().getMdot2() <= 0 && storages.get(i).getFormFaktor().equals("M.2")) {
                 storages.remove(storages.get(i));
                 continue;
             }
             if (bestStorage != null) {
-                if (storages.get(i).getType().equals("SSD")) {
-                    score++;
-                }
-                if (storages.get(i).getSize() > bestStorage.getSize()) {
-                    score++;
-                }
-                if (storages.get(i).getWriteSpeed() > bestStorage.getWriteSpeed()) {
-                    score++;
-                }
-                if (storages.get(i).getReadSpeed() > bestStorage.getReadSpeed()) {
-                    score++;
-                }
-                if (score >= 3) {
+                int totalScore = storages.get(i).getSize() * storages.get(i).getReadSpeed();
+                if (totalScore > score){
+                    score = totalScore;
                     bestStorage = storages.get(i);
                 }
             } else {
@@ -408,12 +398,12 @@ public class Builder {
 
     private void setBudgetScaling(int budget) {
         budgetMap.put("GpuBudget", budget * 0.42);
-        budgetMap.put("CpuBudget", budget * 0.19);
-        budgetMap.put("MotherBoardBudget", budget * 0.11);
+        budgetMap.put("CpuBudget", budget * 0.20);
+        budgetMap.put("MotherBoardBudget", budget * 0.09);
         budgetMap.put("RAMBudget", budget * 0.10);
-        budgetMap.put("StorageBudget", budget * 0.11);
+        budgetMap.put("StorageBudget", budget * 0.08);
         budgetMap.put("chassiBudget", budget * 0.05);
-        budgetMap.put("PSUBudget", budget * 0.07);
+        budgetMap.put("PSUBudget", budget * 0.10);
     }
 
 
