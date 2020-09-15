@@ -6,6 +6,7 @@ import com.Hardwar.Persistence.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.Map;
 @Service
 public class Builder {
 
+    @Autowired
+    ComputerRepository computerRepository;
     @Autowired
     CentralProcessingUnitRepository cpuRepository;
     @Autowired
@@ -44,11 +47,20 @@ public class Builder {
     private double remainder = 0;
 
     public Computer getAComputer(int budget) {
+        computer = computerRepository.findComputerByBudgetAndDate(budget, LocalDate.now());
+        if (computer != null) {
+            return computer;
+        }
+
+
         computer = new Computer();
         budgetMap = new HashMap<>();
         setBudgetScaling(budget);
         this.buildComputer(budget);
         computer.setTotalPrice(computer.getTotalPrice());
+        computer.setDate(LocalDate.now());
+        computer.setBudget(budget);
+        computerRepository.save(computer);
         return computer;
     }
 
@@ -203,7 +215,7 @@ public class Builder {
             }
             if (bestStorage != null) {
                 int totalScore = storages.get(i).getSize() * storages.get(i).getReadSpeed();
-                if (totalScore > score){
+                if (totalScore > score) {
                     score = totalScore;
                     bestStorage = storages.get(i);
                 }
@@ -258,7 +270,7 @@ public class Builder {
                         if (PSUs.get(i).isModular()) {
                             score++;
                         }
-                        if (PSUs.get(i).getCertPoints()>bestPSU.getCertPoints()){
+                        if (PSUs.get(i).getCertPoints() > bestPSU.getCertPoints()) {
                             score += 2;
                         }
                     }

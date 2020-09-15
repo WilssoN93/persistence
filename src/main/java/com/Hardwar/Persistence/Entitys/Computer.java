@@ -1,15 +1,59 @@
 package com.Hardwar.Persistence.Entitys;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
 public class Computer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private int budget;
+
+    @ManyToOne
     private GraphicsCard gpu;
+    @ManyToOne
     private CentralProcessingUnit cpu;
+    @ManyToOne
     private RandomAccessMemory ram;
+    @ManyToOne
     private Chassi chassi;
+    @ManyToOne
     private Storage storage;
+    @ManyToOne
     private MotherBoard motherBoard;
+    @ManyToOne
     private PowerSupplyUnit psu;
+
+    private LocalDate date;
+
     private int totalPrice;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
+    }
 
     public int getTotalPrice() {
 
