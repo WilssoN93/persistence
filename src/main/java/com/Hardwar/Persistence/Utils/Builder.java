@@ -16,29 +16,29 @@ import java.util.Map;
 public class Builder {
 
     @Autowired
-    ComputerRepository computerRepository;
+    private ComputerRepository computerRepository;
     @Autowired
-    CentralProcessingUnitRepository cpuRepository;
+    private CentralProcessingUnitRepository cpuRepository;
     @Autowired
-    MotherBoardRepository motherBoardRepository;
+    private MotherBoardRepository motherBoardRepository;
     @Autowired
-    PowerSupplyUnitRepository powerSupplyUnitRepository;
+    private  PowerSupplyUnitRepository powerSupplyUnitRepository;
     @Autowired
-    RandomAccessMemoryRepository ramRepository;
+    private RandomAccessMemoryRepository ramRepository;
     @Autowired
-    StorageRepository storageRepository;
+    private StorageRepository storageRepository;
     @Autowired
-    GraphicsCardRepository graphicsCardRepository;
+    private GraphicsCardRepository graphicsCardRepository;
     @Autowired
-    ChassiRepository chassiRepository;
+    private ChassiRepository chassiRepository;
 
-    List<Storage> storages;
-    List<RandomAccessMemory> RAMs;
-    List<CentralProcessingUnit> CPUs;
-    List<GraphicsCard> GPUs;
-    List<PowerSupplyUnit> PSUs;
-    List<MotherBoard> motherBoards;
-    List<Chassi> chassis;
+    private List<Storage> storages;
+    private List<RandomAccessMemory> RAMs;
+    private List<CentralProcessingUnit> CPUs;
+    private List<GraphicsCard> GPUs;
+    private List<PowerSupplyUnit> PSUs;
+    private List<MotherBoard> motherBoards;
+    private List<Chassi> chassis;
 
     Computer computer;
 
