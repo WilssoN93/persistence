@@ -21,8 +21,13 @@ public class StorageResource {
     }
 
     @GetMapping(path = "price/{amount}")
-    public List<Storage> getAllByDomain(@PathVariable("amount")int amount){
+    public List<Storage> getAllByPrice(@PathVariable("amount")int amount){
         return service.getAllByPrice(amount);
+    }
+
+    @GetMapping(path = "price/{amount}/type")
+    public List<Storage> getAllByPriceAndType(@PathVariable("amount")int amount, @RequestParam(name = "type") String type){
+        return service.getAllByPriceAndType(amount, type);
     }
 
     @GetMapping

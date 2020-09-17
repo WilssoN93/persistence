@@ -16,27 +16,29 @@ public class CentralProcessingUnitResource {
     CentralProcessingUnitService service;
 
     @GetMapping
-    public @ResponseBody List<CentralProcessingUnit> getAll(){
+    public @ResponseBody
+    List<CentralProcessingUnit> getAll() {
         return service.getAllCPUs();
     }
 
     @GetMapping("price/{amount}")
     public @ResponseBody
-    List<CentralProcessingUnit> getAllCPusCardsByPrice(@PathVariable("amount") String amount){
+    List<CentralProcessingUnit> getAllCPusCardsByPrice(@PathVariable("amount") int amount) {
         return service.getAllCPUsByPrice(amount);
     }
 
     @GetMapping("delete/{id}")
-    public void delete(@PathVariable("id") Long id){
+    public void delete(@PathVariable("id") Long id) {
         service.delete(id);
     }
 
     @GetMapping(path = "{domainName}")
-    public List<CentralProcessingUnit> getAllByDomainName(@PathVariable("domainName")String domainName){
+    public List<CentralProcessingUnit> getAllByDomainName(@PathVariable("domainName") String domainName) {
         return service.getAllCPUsByDomainName(domainName);
     }
+
     @PutMapping
-    public List<CentralProcessingUnit> updateCPUs(@RequestBody List<CentralProcessingUnit> centralProcessingUnits){
+    public List<CentralProcessingUnit> updateCPUs(@RequestBody List<CentralProcessingUnit> centralProcessingUnits) {
         return service.saveAll(centralProcessingUnits);
     }
 

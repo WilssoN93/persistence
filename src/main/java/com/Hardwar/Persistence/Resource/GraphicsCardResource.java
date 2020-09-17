@@ -30,7 +30,7 @@ public class GraphicsCardResource {
 
     @GetMapping("price/{amount}")
     public @ResponseBody
-    List<GraphicsCard> getAllGraphicsCardsByPrice(@PathVariable("amount") String amount){
+    List<GraphicsCard> getAllGraphicsCardsByPrice(@PathVariable("amount") int amount){
         return service.getAllByPriceAmount(amount);
     }
 

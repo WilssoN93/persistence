@@ -14,9 +14,17 @@ public class ComputerResource {
     @Autowired
     Builder builder;
 
+    @GetMapping(path = "{amount}/optionalDrive/")
+    public @ResponseBody
+    Computer computerWithOptionalDrive(@PathVariable("amount")int amount,
+                                       @RequestParam(name = "primaryDrive") String primaryDrive,
+                                       @RequestParam(name = "optionalDrive") String optionalDrive){
+       return builder.getAComputer(amount ,primaryDrive ,optionalDrive);
+    }
+
     @GetMapping(path = "{amount}")
     public @ResponseBody
-    Computer getAComputer(@PathVariable("amount")int amount){
-       return builder.getAComputer(amount);
+    Computer computerWithoutOptionalDrive(@PathVariable("amount")int amount, @RequestParam(name = "primaryDrive") String primaryDrive){
+        return builder.getAComputer(amount, primaryDrive, null);
     }
 }

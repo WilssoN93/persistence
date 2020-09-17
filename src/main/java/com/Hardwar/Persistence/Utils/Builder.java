@@ -1,8 +1,7 @@
 package com.Hardwar.Persistence.Utils;
 
 import com.Hardwar.Persistence.Entitys.*;
-import com.Hardwar.Persistence.Repository.*;
-
+import com.Hardwar.Persistence.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,43 +10,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("unchecked")
 @Service
 public class Builder {
 
     @Autowired
-    private ComputerRepository computerRepository;
+    private ComputerService computerService;
     @Autowired
-    private CentralProcessingUnitRepository cpuRepository;
+    private CentralProcessingUnitService centralProcessingUnitService;
     @Autowired
-    private MotherBoardRepository motherBoardRepository;
+    private MotherBoardService motherBoardService;
     @Autowired
-    private  PowerSupplyUnitRepository powerSupplyUnitRepository;
+    private PowerSupplyUnitService powerSupplyUnitService;
     @Autowired
-    private RandomAccessMemoryRepository ramRepository;
+    private RandomAccessMemoryService randomAccessMemoryService;
     @Autowired
-    private StorageRepository storageRepository;
+    private StorageService storageService;
     @Autowired
-    private GraphicsCardRepository graphicsCardRepository;
+    private GraphicsCardService graphicsCardService;
     @Autowired
-    private ChassiRepository chassiRepository;
-
-    private List<Storage> storages;
-    private List<RandomAccessMemory> RAMs;
-    private List<CentralProcessingUnit> CPUs;
-    private List<GraphicsCard> GPUs;
-    private List<PowerSupplyUnit> PSUs;
-    private List<MotherBoard> motherBoards;
-    private List<Chassi> chassis;
+    private ChassiService chassiService;
 
     Computer computer;
 
 
+    private String primaryDrive;
+    private String optionalDrive;
     private Map<String, Double> budgetMap;
     private double remainder = 0;
 
-    public Computer getAComputer(int budget) {
-        computer = computerRepository.findComputerByBudgetAndDate(budget, LocalDate.now());
+    public Computer getAComputer(int budget, String primaryDrive, String optionalDrive) {
+        this.optionalDrive = optionalDrive;
+        this.primaryDrive = primaryDrive;
+        computer = computerService.findComputerByBudgetAndDate(budget, LocalDate.now());
         if (computer != null) {
             return computer;
         }
@@ -60,28 +54,29 @@ public class Builder {
         computer.setTotalPrice(computer.getTotalPrice());
         computer.setDate(LocalDate.now());
         computer.setBudget(budget);
-        computerRepository.save(computer);
+        computerService.saveComputer(computer);
+        System.out.println(computer);
         return computer;
     }
 
     private boolean getBestPossibleGraphicsCard(double amount) {
-        GPUs = graphicsCardRepository.findAllByPriceIsLessThanEqual((int) amount);
+        List<GraphicsCard> GPUs = graphicsCardService.getAllByPriceAmount((int) amount);
         int bestScore = 0;
         GraphicsCard bestGraphicsCard = null;
-        for (int i = 0; i < GPUs.size(); i++) {
+        for (GraphicsCard gpUs : GPUs) {
             if (bestGraphicsCard != null) {
                 int score = 0;
-                if (GPUs.get(i).getBoostClock() == 0 && GPUs.get(i).getCudaCores() != 0) {
-                    score = GPUs.get(i).getCoreClock() * GPUs.get(i).getCudaCores();
+                if (gpUs.getBoostClock() == 0 && gpUs.getCudaCores() != 0) {
+                    score = gpUs.getCoreClock() * gpUs.getCudaCores();
                 } else if (bestGraphicsCard.getCudaCores() != 0) {
-                    score = GPUs.get(i).getBoostClock() * GPUs.get(i).getCudaCores();
+                    score = gpUs.getBoostClock() * gpUs.getCudaCores();
                 }
                 if (score > bestScore) {
-                    bestGraphicsCard = GPUs.get(i);
+                    bestGraphicsCard = gpUs;
                     bestScore = score;
                 }
             } else {
-                bestGraphicsCard = GPUs.get(i);
+                bestGraphicsCard = gpUs;
             }
         }
         if (bestGraphicsCard != null) {
@@ -93,7 +88,7 @@ public class Builder {
     }
 
     private boolean getBestPossibleCPU(double amount) {
-        CPUs = cpuRepository.findAllByPriceIsLessThanEqual((int) (amount));
+        List<CentralProcessingUnit> CPUs = centralProcessingUnitService.getAllCPUsByPrice((int) (amount));
         CentralProcessingUnit bestCPU = null;
         for (int i = 0; i < CPUs.size(); i++) {
             double score = 0;
@@ -143,7 +138,7 @@ public class Builder {
     }
 
     private boolean getBestPossibleMotherBoard(double amount) {
-        motherBoards = motherBoardRepository.findAllByPriceIsLessThanEqual((int) amount);
+        List<MotherBoard> motherBoards = motherBoardService.getAllMotherBoardsByPrice((int) amount);
         MotherBoard bestMotherBoard = null;
         for (int i = 0; i < motherBoards.size(); i++) {
             int score = 0;
@@ -179,7 +174,7 @@ public class Builder {
     }
 
     private boolean getBestPossibleRAM(double amount) {
-        RAMs = ramRepository.findAllByPriceIsLessThanEqual((int) amount);
+        List<RandomAccessMemory> RAMs = randomAccessMemoryService.getAllByPrice((int) amount);
         RandomAccessMemory bestRAM = null;
         for (int i = 0; i < RAMs.size(); i++) {
             if (RAMs.get(i).getDdr() != null && RAMs.get(i).getDdr().equals("DDR4")) {
@@ -205,7 +200,7 @@ public class Builder {
     }
 
     private boolean getBestPossibleStorage(double amount) {
-        storages = storageRepository.findAllByPriceIsLessThanEqual((int) amount);
+        List<Storage> storages = storageService.getAllByPriceAndType((int) amount, primaryDrive);
         Storage bestStorage = null;
         int score = 0;
         for (int i = 0; i < storages.size(); i++) {
@@ -234,7 +229,7 @@ public class Builder {
     }
 
     private boolean getBestPossibleChassi(double amount) {
-        chassis = chassiRepository.findAllByPriceIsLessThanEqual((int) amount);
+        List<Chassi> chassis = chassiService.getAllByPrice((int) amount);
         Chassi bestChassi = null;
         int score = 0;
         for (int i = 0; i < chassis.size(); i++) {
@@ -260,7 +255,7 @@ public class Builder {
     }
 
     private boolean getBestPossiblePSU(double amount) {
-        PSUs = powerSupplyUnitRepository.findAllByPriceIsLessThanEqual((int) amount);
+        List<PowerSupplyUnit> PSUs = powerSupplyUnitService.getAllByPrice((int) amount);
         PowerSupplyUnit bestPSU = null;
         int score = 0;
         for (int i = 0; i < PSUs.size(); i++) {

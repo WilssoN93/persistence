@@ -17,25 +17,25 @@ public class GraphicsCardService {
         return repository.findAllByDomainName(domainName);
     }
 
-    public List<GraphicsCard> getAllByPriceAmount(String amount) {
-        return repository.findAllByPriceIsLessThanEqual(Integer.parseInt(amount));
+    public List<GraphicsCard> getAllByPriceAmount(int amount) {
+        return repository.findAllByPriceIsLessThanEqual(amount);
     }
 
     public List<GraphicsCard> getAllGraphicsCards() {
         return repository.findAll();
     }
 
-    public List<GraphicsCard> getAllNonParsedGPUs(){
+    public List<GraphicsCard> getAllNonParsedGPUs() {
         return repository.findAllByParsedFalse();
     }
 
     public List<GraphicsCard> saveAll(List<GraphicsCard> graphicsCardsList) {
         GraphicsCard graphicsCard = null;
-        for (GraphicsCard gpu:graphicsCardsList) {
-            if(gpu != null) {
+        for (GraphicsCard gpu : graphicsCardsList) {
+            if (gpu != null) {
                 graphicsCard = repository.findByUrl(gpu.getUrl());
             }
-            if (graphicsCard != null){
+            if (graphicsCard != null) {
                 gpu.setId(graphicsCard.getId());
             }
             repository.save(gpu);
@@ -43,7 +43,7 @@ public class GraphicsCardService {
         return graphicsCardsList;
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 

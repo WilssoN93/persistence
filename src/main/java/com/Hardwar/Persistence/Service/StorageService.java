@@ -25,6 +25,10 @@ public class StorageService {
         return repo.findAllByPriceIsLessThanEqual(amount);
     }
 
+    public List<Storage> getAllByPriceAndType (int amount, String type){
+        return repo.findAllByPriceIsLessThanEqualAndType(amount, type);
+    }
+
     public void delete(Long id){
         repo.deleteById(id);
     }
